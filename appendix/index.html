@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Appendix - Dig-Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Appendix";
+        var mkdocs_page_input_path = "appendix.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Dig-Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../intro/">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../slow-control/">Slow Control</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">COMM&Sensors</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../leds/">LEDs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../sensors/">Sensors</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../onboard-peripherals/">Peripherals</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Setup</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../setup/parameters/">DAQ Parameters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../setup/pedestal/">Pedestal</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../setup/calibrator/">Calibrator</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DAQ</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../daq/board-control/">Settings</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../daq/timing/">Timing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">________</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Appendix</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#slow-control-protocols">Slow control protocols</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#dpb-slowcontrolapp">dpb-slowcontrolapp</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#digitizer-gui">Digitizer GUI</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#digitizer-copkt">Digitizer COPkt</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Dig-Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">________</li>
+      <li class="breadcrumb-item active">Appendix</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="appendix">Appendix<a class="headerlink" href="#appendix" title="Permanent link">#</a></h1>
+<p>In this paragraph, a detailed explanation of technical arguments is given.</p>
+<h2 id="slow-control-protocols">Slow control protocols<a class="headerlink" href="#slow-control-protocols" title="Permanent link">#</a></h2>
+<p>The slow control channel to communicate with the digitizer board is the serial port connecting it to the DPB. Natively, there are 2 possible communication protocols over this serial link: the so-called <code>GUI</code> and the <code>COPacket</code>.</p>
+<p>The <code>GUI</code> protocol was developed as a mean to communicate "visually" with the digitizer board. There is a menu implemented and commands can be issued sending ASCII codes through a terminal or an application. This protocol is not suitable to be implemented in a "machine readable" way, since there is no control over the character stream sent or returned by the digitizer. This is meant essentially for "human" interaction through a terminal, though a lot of effort has been done to use it also in Python scripts.</p>
+<p>The <code>COPacket</code>, on the contrary, though it is a very simple protocol, is thought to be "machine" friendly. It is an ASCII packet based protocol, with leading and trailing characters, commands and parameters well defined and of known length.</p>
+<h3 id="dpb-slowcontrolapp">dpb-slowcontrolapp<a class="headerlink" href="#dpb-slowcontrolapp" title="Permanent link">#</a></h3>
+<p>This is the target slow control procedure: the DPB implements a service, called <code>dpb-slowcontrolapp</code>, which manages the interface to the digitizer. Details of this implementation can be found <a href="https://gitlab.cern.ch/hk-dpb-team/hk_petalinux_project_dpb2_2022_2/-/blob/master/doc/dpb-slowcontrolapp-howto.md?ref_type=heads">here</a>.</p>
+<h3 id="digitizer-gui">Digitizer GUI<a class="headerlink" href="#digitizer-gui" title="Permanent link">#</a></h3>
+<h3 id="digitizer-copkt">Digitizer COPkt<a class="headerlink" href="#digitizer-copkt" title="Permanent link">#</a></h3>
+<p>The protocol is base on packets starting with the <code>$</code> leading character and ending with the <code>#</code> trailing character. The command follows immediately after the <code>$</code> character; it is a string which may or may not require one or more parameters. For example, to have a list of available commands the <code>$help#</code> command can be issued.</p>
+<pre><code>//
+//  COPacketCmdHkDig.cpp
+//
+//  Created by Faber on 13 Jul 2022
+//  Copyright Â© 2018 Faber. All rights reserved.
+//
+
+#include &quot;COPacketCmdHkDig.h&quot;
+
+const uint16_t   HkDigCmdSize = 99;
+_COPacketCmdType HkDigCommands[HkDigCmdSize] = {
+    // Parameters commands
+    {&quot;gthn&quot;, HKDIG_GET_THR_NUM,      &quot; ch# Get ch thr&quot;},
+    {&quot;sthn&quot;, HKDIG_SET_THR_NUM,      &quot; ch thr# Set ch thr&quot;},
+    {&quot;stha&quot;, HKDIG_SET_THR_ALL,      &quot; thr# Set all thr&quot;},
+
+    {&quot;gitn&quot;, HKDIG_GET_IT_NUM,       &quot; ch# Get ch intT&quot;},
+    {&quot;sitn&quot;, HKDIG_SET_IT_NUM,       &quot; ch I# Set ch intT&quot;},
+    {&quot;sita&quot;, HKDIG_SET_IT_ALL,       &quot; I# Set all intT&quot;},
+
+    {&quot;gdtn&quot;, HKDIG_GET_DT_NUM,       &quot; ch# Get ch deadT&quot;},
+    {&quot;sdtn&quot;, HKDIG_SET_DT_NUM,       &quot; ch D# Set ch deadT&quot;},
+    {&quot;sdta&quot;, HKDIG_SET_DT_ALL,       &quot; D# Set all deadT&quot;},
+
+    // Calibrator commands
+    {&quot;scalm&quot;,  HKDIG_SET_CAL_TYPE,    &quot; M# Cal Mode&quot;},
+    {&quot;scale&quot;,  HKDIG_SET_CAL_N,       &quot; ch 0/1# Set cal en&quot;},
+    {&quot;scalp&quot;,  HKDIG_SET_CAL_POWER,   &quot; 0/1# calb pwr&quot;},
+    {&quot;scall&quot;,  HKDIG_SET_CAL_PLS_LEN, &quot; L# pls len (10.4ns)&quot;},
+    {&quot;scala&quot;,  HKDIG_SET_CAL_PLS_AMP, &quot; A# pls amp&quot;},
+    {&quot;gcala&quot;,  HKDIG_GET_CAL_PLS_AMP, &quot;# pls amp&quot;},
+    {&quot;scaltp&quot;, HKDIG_SET_CAL_NPDN,    &quot; p2m# p2m (41.6ns)&quot;},
+    {&quot;scaltm&quot;, HKDIG_SET_CAL_MUTE,    &quot; m2e# m2e (10.4ns)&quot;},
+    {&quot;scalte&quot;, HKDIG_SET_CAL_PLSEN,   &quot; e2p# e2p (10.4ns)&quot;},
+    {&quot;scalt&quot;,  HKDIG_SET_CAL_PERIOD,  &quot; T# cal T (50us)&quot;},
+    {&quot;scalg&quot;,  HKDIG_SET_CAL_GAIN,    &quot; G# Cal Gain&quot;},
+
+    // DAQ commands
+    {&quot;glgc&quot;, HKDIG_GET_CHN_LG_CHG,   &quot; ch# Get LG charge&quot;},
+    {&quot;ghgc&quot;, HKDIG_GET_CHN_HG_CHG,   &quot; ch# Get HG charge&quot;},
+    {&quot;gchs&quot;, HKDIG_GET_CHN_STATUS,   &quot; ch# Get ch status&quot;},
+    {&quot;gchc&quot;, HKDIG_GET_CHN_CNTRL,    &quot; ch# Get ch control&quot;},
+    {&quot;schc&quot;, HKDIG_SET_CHN_CNTRL,    &quot; ch ctl# Set ch control&quot;},
+    {&quot;efen&quot;, HKDIG_START_FE_N,       &quot; ch# En  ch FE&quot;},
+    {&quot;dfen&quot;, HKDIG_STOP_FE_N,        &quot; ch# Dis ch FE&quot;},
+    {&quot;edqn&quot;, HKDIG_START_DAQ_N,      &quot; ch# En  ch DAQ&quot;},
+    {&quot;ddqn&quot;, HKDIG_STOP_DAQ_N,       &quot; ch# Dis ch DAQ&quot;},
+    {&quot;grof&quot;, HKDIG_RO_FMON_N,        &quot; ch# RO  ch&quot;},
+
+    // Global commands
+    {&quot;efea&quot;, HKDIG_START_FE_ALL,     &quot;# En  all FE&quot;},
+    {&quot;dfea&quot;, HKDIG_STOP_FE_ALL,      &quot;# Dis all FE&quot;},
+    {&quot;edqa&quot;, HKDIG_START_DAQ_ALL,    &quot;# En  all DAQ&quot;},
+    {&quot;ddqa&quot;, HKDIG_STOP_DAQ_ALL,     &quot;# Dis all DAQ&quot;},
+    {&quot;tdcr&quot;, HKDIG_TDC_RST,          &quot;# Tdc Rst&quot;},
+
+    // Data transmission commands
+    {&quot;sdmx&quot;, HKDIG_SET_AUR_DEMUX,    &quot; D# set demux&quot;},
+
+    // Pedestal commands
+    {&quot;spedn&quot;, HKDIG_SET_PED_ENABLE,   &quot; ch en# Set ch en&quot;},
+    {&quot;gpedn&quot;, HKDIG_GET_PED_ENABLE,   &quot; ch# Get ch en&quot;},
+    {&quot;spedp&quot;, HKDIG_SET_PED_PERIOD,   &quot; P# Set T (50us)&quot;},
+    {&quot;gpedp&quot;, HKDIG_GET_PED_PERIOD,   &quot;# Get T (50us)&quot;},
+    {&quot;speds&quot;, HKDIG_SET_PED_STAGGER,  &quot; S# Set stagger (10.4ns)&quot;},
+    {&quot;gpeds&quot;, HKDIG_GET_PED_STAGGER,  &quot;# Get stagger (10.4ns)&quot;},
+
+    // OD commands
+    {&quot;sodsel&quot;, HKDIG_SET_OD_SEL_REG, &quot; ch 0/1# Set od ch&quot;},
+    {&quot;godsel&quot;, HKDIG_GET_OD_SEL_REG, &quot;# Get od sel&quot;},
+
+    {&quot;ghwv&quot;, HKDIG_GET_HW_VER,       &quot;# HW Ver&quot;},
+    {&quot;ggwv&quot;, HKDIG_GET_GW_VER,       &quot;# GW Ver&quot;},
+    {&quot;ggwd&quot;, HKDIG_GET_GW_DATE,      &quot;# GW Date&quot;},
+    {&quot;gswv&quot;, HKDIG_GET_SW_VER,       &quot;# SW Ver&quot;},
+    {&quot;gbds&quot;, HKDIG_GET_BOARD_STATUS, &quot;# BRD status&quot;},
+    {&quot;gbdc&quot;, HKDIG_GET_BOARD_CNTRL,  &quot;# BRD control&quot;},
+    {&quot;gupt&quot;, HKDIG_GET_UPTIME,       &quot;# Uptime&quot;},
+    {&quot;raur&quot;, HKDIG_RST_AURORA_LINK,  &quot;# Rst Aurora&quot;},
+    {&quot;sclk&quot;, HKDIG_SET_CLOCK,        &quot; val# loc(0)-dpb(1)&quot;},
+    {&quot;gclk&quot;, HKDIG_GET_CLOCK,        &quot;# Get clk&quot;},
+    {&quot;gtlck&quot;, HKDIG_GET_TLNK_LOCK,   &quot;# Get TLock&quot;},
+    {&quot;spsc&quot;, HKDIG_SET_ADS_PSC,      &quot;# Set PSC&quot;},
+
+    {&quot;goui&quot;, HKDIG_GET_EEPROM_OUI,   &quot;# Get OUI&quot;},
+    {&quot;geid&quot;, HKDIG_GET_EEPROM_EID,   &quot;# Get EID&quot;},
+
+    // Rate monitor commands
+    {&quot;grmp&quot;, HKDIG_GET_RMON_PER,     &quot;# Get RMonPer&quot;},
+    {&quot;srmp&quot;, HKDIG_SET_RMON_PER,     &quot; per# Set RMonPer&quot;},
+    {&quot;grma&quot;, HKDIG_GET_RMON_ADC_N,   &quot; ch# Get ch ADCr&quot;},
+    {&quot;grmt&quot;, HKDIG_GET_RMON_TDC_N,   &quot; ch# Get ch TDCr&quot;},
+    {&quot;grmf&quot;, HKDIG_GET_RMON_FMT_N,   &quot; ch# Get ch FMTr&quot;},
+    {&quot;grmm&quot;, HKDIG_GET_RMON_MUX_N,   &quot;# Get MUXr&quot;},
+    {&quot;grmr&quot;, HKDIG_GET_RMON_RST_N,   &quot;# Get RSTr&quot;},
+    {&quot;runr&quot;, HKDIG_RUN_RMON,         &quot;# Run RMon&quot;},
+    {&quot;rmne&quot;, HKDIG_RUN_RMON_EN,      &quot;# En rmon&quot;},
+    {&quot;rmnd&quot;, HKDIG_RUN_RMON_DIS,     &quot;# Dis rmon&quot;},
+
+    // Sensor commands
+    {&quot;g3v3a&quot;,  HKDIG_GET_BOARD_3V3A,  &quot;# 3V3A&quot;},
+    {&quot;g12va&quot;,  HKDIG_GET_BOARD_12VA,  &quot;# 12VA&quot;},
+    {&quot;gi12v&quot;,  HKDIG_GET_BOARD_I12V,  &quot;# I12V&quot;},
+    {&quot;g5v0a&quot;,  HKDIG_GET_BOARD_5V0A,  &quot;# 5V0A&quot;},
+    {&quot;g5v0f&quot;,  HKDIG_GET_BOARD_5V0F,  &quot;# 5V0F&quot;},
+    {&quot;gc12v&quot;,  HKDIG_GET_BOARD_C12V,  &quot;# C12V&quot;},
+    {&quot;gi5va&quot;,  HKDIG_GET_BOARD_I5VA,  &quot;# I5VA&quot;},
+    {&quot;gi3v3a&quot;, HKDIG_GET_BOARD_I3V3A, &quot;# I3V3A&quot;},
+    {&quot;gi12va&quot;, HKDIG_GET_BOARD_I12VA, &quot;# I12VA&quot;},
+    {&quot;gtfe&quot;,   HKDIG_GET_BOARD_TFE,   &quot;# T_FE&quot;},
+    {&quot;gtfpga&quot;, HKDIG_GET_BOARD_TFPGA, &quot;# T_FPGA&quot;},
+    {&quot;gtpwr&quot;,  HKDIG_GET_BOARD_TPWR,  &quot;# T_PWR&quot;},
+    {&quot;gtfer&quot;,  HKDIG_GET_BOARD_TFER,  &quot;# T_FE Raw&quot;},
+    {&quot;gtfpgar&quot;,HKDIG_GET_BOARD_TFPGAR,&quot;# T_FPGA Raw&quot;},
+    {&quot;gtpwrr&quot;, HKDIG_GET_BOARD_TPWRR, &quot;# T_PWR Raw&quot;},
+
+    {&quot;gtch0&quot;,   HKDIG_GET_BOARD_TCH0,    &quot;# T_CH0&quot;},
+    {&quot;gtch11&quot;,  HKDIG_GET_BOARD_TCH11,   &quot;# T_CH11&quot;},
+    {&quot;gtch0r&quot;,  HKDIG_GET_BOARD_TCH0R,   &quot;# T_CH0 Raw&quot;},
+    {&quot;gtch11r&quot;, HKDIG_GET_BOARD_TCH11R,  &quot;# T_CH11 Raw&quot;},
+    {&quot;g5vod&quot;,   HKDIG_GET_BOARD_5VOD,    &quot;# 5VOD&quot;},
+    {&quot;gi5vod&quot;,  HKDIG_GET_BOARD_I5VOD,   &quot;# I5VOD&quot;},
+    {&quot;s5v0a&quot;,   HKDIG_SET_5V0A,          &quot; num# Set 5V0A&quot;},
+    {&quot;s5v0e&quot;,   HKDIG_SET_5V0A_EEPROM,   &quot; num# WrEE&quot;},
+
+    {&quot;stbr&quot;,    HKDIG_SET_TB_REG,        &quot; num# Set TBr&quot;},
+    {&quot;gtbr&quot;,    HKDIG_GET_TB_REG,        &quot;# Get TBr&quot;},
+
+    {&quot;gbme&quot;,   HKDIG_GET_BME_DATA,    &quot;# BME&quot;},
+    {&quot;gtcal&quot;,  HKDIG_GET_BME_TCAL,    &quot;# TCal&quot;},
+    {&quot;ghcal&quot;,  HKDIG_GET_BME_HCAL,    &quot;# HCal&quot;},
+    {&quot;gpcal&quot;,  HKDIG_GET_BME_PCAL,    &quot;# PCal&quot;},
+
+    {&quot;help&quot;,   HKDIG_HELP,            &quot;#&quot;},
+    {&quot;erro&quot;,   HKDIG_ERRO,            &quot;#&quot;}
+};
+
+_COPacketCmdList HkDigCmdList = {
+    HkDigCmdSize,
+    HkDigCommands
+};
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../daq/timing/" class="btn btn-neutral float-left" title="Timing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../about/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../daq/timing/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../about/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

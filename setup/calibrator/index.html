@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Calibrator - Dig-Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Calibrator";
+        var mkdocs_page_input_path = "setup/calibrator.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Dig-Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../intro/">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../slow-control/">Slow Control</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">COMM&Sensors</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../leds/">LEDs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sensors/">Sensors</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../onboard-peripherals/">Peripherals</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Setup</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../parameters/">DAQ Parameters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../pedestal/">Pedestal</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Calibrator</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#powering-the-calb">Powering the CalB</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#slow-control-command">Slow control command</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#calibration-type">Calibration Type</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#slow-control-command_1">Slow control command</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enabling-channel">Enabling channel</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#slow-control-command_2">Slow control command</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#calibration-timing-parameters">Calibration timing parameters</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#calibration-period">Calibration period</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#slow-control-command_3">Slow control command</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#powerdown-to-mute">Powerdown to Mute</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#slow-control-command_4">Slow control command</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mute-to-calibration-pulse-enable">Mute to Calibration pulse enable</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#slow-control-command_5">Slow control command</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#calibration-enable-to-pulse-emission">Calibration enable to pulse emission</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#slow-control-command_6">Slow control command</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#calibration-pulse-charge">Calibration pulse charge</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#calibration-pulse-length">Calibration pulse length</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#slow-control-command_7">Slow control command</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#calibration-pulse-amplitude">Calibration pulse amplitude</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#slow-control-command_8">Slow control command</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#calibration-gain">Calibration gain</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#slow-control-command_9">Slow control command</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DAQ</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../daq/board-control/">Settings</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../daq/timing/">Timing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">________</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../appendix/">Appendix</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../about/">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Dig-Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Setup</li>
+      <li class="breadcrumb-item active">Calibrator</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="calibrator-board">Calibrator Board<a class="headerlink" href="#calibrator-board" title="Permanent link">#</a></h1>
+<p>The calibrator board (<strong>CalB</strong> from now on) is an electronic board aimed to generate signals to the ID and OD front-end circuitry to monitor performance stability. The <strong>CalB</strong> provides input pulses to the ID receiver front-end circuit in order to calibrate input chain also after installation of the Digitizer. The board is produced by the ICRR group and works as a mezzanine card plugged onto the Digitizer board. A set of input parameters allow the user to set it up as desired.</p>
+<p>When the calibration signals are enabled for one specific channel, the whole procedure is started and the <strong>CalB</strong> generates calibration pulses. Then, it's up to each single channel to let this signal arrive to the input to be digitized.</p>
+<p>Since the power consumption is quite high (~1.5W), it was decided to add the possibility to set a powerdown mode to reduce the input current to few hundreds of uA. To exit from powerdown mode, the board requires around 2ms: this parameter sets the maximum frequency for the calibration process. The sequence of <strong>CalB</strong> signals which yields the correct timing has been fixed and stored into default parameters. Nonethless, it is possible to change those values for test and debug. The charge of output pulses can be changed.</p>
+<p>When emission is required, the <strong>CalB</strong> will output at the same time the calibration pulses to all the channels: the Digitizer SW is then able enable/disable the multiplexer of each single channel in order to receive/inhibit the calibration pulse.</p>
+<p>The way to use the <strong>CalB</strong> is the following:</p>
+<ul>
+<li>power on <strong>CalB</strong></li>
+<li>program timing sequence (not recommended: default values are ok!)</li>
+<li>program pulse charge value (amplitude, length, gain)</li>
+<li>set proper calibration type (0 to disable, 2 to enable)</li>
+<li>enable calibration on desired channel</li>
+</ul>
+<h2 id="powering-the-calb">Powering the <strong>CalB</strong><a class="headerlink" href="#powering-the-calb" title="Permanent link">#</a></h2>
+<p>The ID Digitizer can power ON/OFF the  <strong>CalB</strong> power driving an on-board analog switch that can connect the board to the 12V.</p>
+<h3 id="slow-control-command">Slow control command<a class="headerlink" href="#slow-control-command" title="Permanent link">#</a></h3>
+<p>The slow control command which powers on and off the <strong>CalB</strong> is the following:</p>
+<pre><code>SET DIGx CALIBPWR val
+</code></pre>
+<p>where:</p>
+<ul>
+<li><code>x</code> is the digitizer number (0/1)</li>
+<li><code>val</code> is 0/1 to Power OFF/ON</li>
+</ul>
+<h2 id="calibration-type">Calibration Type<a class="headerlink" href="#calibration-type" title="Permanent link">#</a></h2>
+<p>The generation of calibration pulses is handled by a specific command, which can disable or enable the generation.</p>
+<p>The command parameters are the following:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">PARAMETER NAME</th>
+<th style="text-align: center;">PARAMETER VALUE</th>
+<th style="text-align: right;">EFFECT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">CAL_NONE</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: right;">Calibration pulse is disabled</td>
+</tr>
+<tr>
+<td style="text-align: center;">CAL_TOGGLE</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: right;">Don't use: debug only</td>
+</tr>
+<tr>
+<td style="text-align: center;">CAL_GEN</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: right;">Calibration pulse is enabled</td>
+</tr>
+<tr>
+<td style="text-align: center;">CAL_FIX</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: right;">Don't use: debug only</td>
+</tr>
+</tbody>
+</table>
+<p>The values for pulse charge and timing are those set as explained in <a href="#calibration-timing-parameters">timing settings</a> and in <a href="#calibration-pulse-charge">charge settings</a>.</p>
+<h3 id="slow-control-command_1">Slow control command<a class="headerlink" href="#slow-control-command_1" title="Permanent link">#</a></h3>
+<p>The slow control command to select calibration type is:</p>
+<pre><code>SET DIGx CALIBTYPE val
+</code></pre>
+<p>where:</p>
+<ul>
+<li><code>x</code> is the digitizer number (0/1)</li>
+<li><code>val</code> selects the calibration type (0/2)</li>
+</ul>
+<h2 id="enabling-channel">Enabling channel<a class="headerlink" href="#enabling-channel" title="Permanent link">#</a></h2>
+<p>At the level of input receiver on the analog front-end, a multiplexer chooses where the input signal should come from: the input
+connector, ie the PMT, or the calibrator board. This enabling must be done channel by channel: when enabled, the FW will automatically
+switch the input to the calibrator source during pulse generation.</p>
+<p>For very high amplitude pulses, there is some diaphony between multiplexer input and output, so that sometimes signals can be
+registered also by disabled channels.</p>
+<h3 id="slow-control-command_2">Slow control command<a class="headerlink" href="#slow-control-command_2" title="Permanent link">#</a></h3>
+<p>The slow control command which disables/enables the calibration pulse to be received on a specific channel is:</p>
+<pre><code>SET DIGx CALIBEN c val
+</code></pre>
+<p>where:</p>
+<ul>
+<li><code>x</code> is the digitizer number (0/1)</li>
+<li><code>c</code> is the channel number (0-17)</li>
+<li><code>val</code> is 0/1 to disable/enable</li>
+</ul>
+<h2 id="calibration-timing-parameters">Calibration timing parameters<a class="headerlink" href="#calibration-timing-parameters" title="Permanent link">#</a></h2>
+<p>As previously stated, there are HW signals controlling the behavior of the the <strong>CalB</strong>. A timing sequence has been fixed to drives those signals in an optimal way; the following timing diagram shows the signals and the default values of the sequence:</p>
+<pre><code>                    P2M      M2C   C2P  PLS  P2E=E2P
+                |---- // --|-----|-----|---|-----|||
+POWERDOWN  _____|---- // --------------------------|___
+MUTE       ----------------|______________________|----
+CAL ENABLE ______________________|---------------|_____
+PULSE      ____________________________|---|___________
+
+Default Values: P2M ~= 2ms (200000/PDN_PRESCALER; 50000)
+Default Values: M2C ~= 2us (200)
+Default Values: C2P ~= 1us (100)
+Default Values: PLS ~= 1-N
+</code></pre>
+<p>There are 3 parameters which set the timing of the pulse generation:</p>
+<ul>
+<li>P2M, ie the <em>POWERDOWN</em> to <em>MUTE</em>;</li>
+<li>M2C, ie <em>MUTE</em> to <em>CALEN</em>;</li>
+<li>C2P, ie <em>CALEN</em> to <em>PULSE</em>;</li>
+</ul>
+<p>The pulse length is part of the timing sequence but it main features is controlling the charge of the emitted pulse.</p>
+<p>As shown in the diagram, after pulse emission, each signal is deactivated, one after the other. These sequence should be considered as a whole, and should not be changed. The period of generation is the distance in time between successive <em>POWERDOWN</em> cycles, and cannot be lower than the ~2ms needed by the <strong>CalB</strong> to exit from powerdown state. This fixes the maximum calibration frequency to ~500Hz.</p>
+<h3 id="calibration-period">Calibration period<a class="headerlink" href="#calibration-period" title="Permanent link">#</a></h3>
+<p>The calibration period is stored in a 16-bit register whose time unit is 50us. The time span is from 50us up to more than 3 seconds. The maximum frequency for the calibration process is limitied by the time needed for the powerdown disable to take effect, which is on the order of ms. If the period is lower than the PDND, unexpected behavior will happen.</p>
+<p>The value into the register is the value that will be reached by the binary counter, i.e. it is the required duration - 1. For example, a value of 5 corresponds to a period of 300us, calculated as (5+1)*50us. A value of 0 corresponds to a period of 50us.</p>
+<h4 id="slow-control-command_3">Slow control command<a class="headerlink" href="#slow-control-command_3" title="Permanent link">#</a></h4>
+<p>The slow control command which sets the calibration period is the following:</p>
+<pre><code>SET DIGx CALIBPER val
+</code></pre>
+<p>where:</p>
+<ul>
+<li><code>x</code> is the digitizer number (0/1)</li>
+<li><code>val</code> is a value ranging from 0 to 65535</li>
+</ul>
+<h3 id="powerdown-to-mute">Powerdown to Mute<a class="headerlink" href="#powerdown-to-mute" title="Permanent link">#</a></h3>
+<p>Since the power consumption of the Calibration board is quite relevant, it has been decided to power down the board between generation of calibration pulses. The electronics on the <strong>CalB</strong> takes some time to power up, on the order of ms, and this is why the default value is 2ms.</p>
+<h4 id="slow-control-command_4">Slow control command<a class="headerlink" href="#slow-control-command_4" title="Permanent link">#</a></h4>
+<p>The slow control command which sets the <strong>CalB</strong> powerdown duration is the following:</p>
+<pre><code>SET DIGx CALIBPDN val
+</code></pre>
+<p>where:</p>
+<ul>
+<li><code>x</code> is the digitizer number (0/1)</li>
+<li><code>val</code> is a value ranging from 0 to 65535</li>
+</ul>
+<h3 id="mute-to-calibration-pulse-enable">Mute to Calibration pulse enable<a class="headerlink" href="#mute-to-calibration-pulse-enable" title="Permanent link">#</a></h3>
+<p>The <em>mute</em> signal disables the opamp which drives the signals to the Digitizer. It is needed to avoid crosstalk or unwanted signals.</p>
+<p>By default, it is set to ~2us by a 16-bit register whose time unit is 10.4ns</p>
+<h4 id="slow-control-command_5">Slow control command<a class="headerlink" href="#slow-control-command_5" title="Permanent link">#</a></h4>
+<p>The slow control command which sets the <strong>CalB</strong> mute duration is the following:</p>
+<pre><code>SET DIGx CALIBMUTE val
+</code></pre>
+<p>where:</p>
+<ul>
+<li><code>x</code> is the digitizer number (0/1)</li>
+<li><code>val</code> is a value ranging from 0 to 65535</li>
+</ul>
+<h3 id="calibration-enable-to-pulse-emission">Calibration enable to pulse emission<a class="headerlink" href="#calibration-enable-to-pulse-emission" title="Permanent link">#</a></h3>
+<p>The calibration enable drives the multiplexer on the Digitizer to route the calibration pulse from the <strong>CalB</strong> to the front-end analog receiver.</p>
+<p>By default, it is set to ~1us by a 16-bit register whose time unit is 10.4ns</p>
+<h4 id="slow-control-command_6">Slow control command<a class="headerlink" href="#slow-control-command_6" title="Permanent link">#</a></h4>
+<p>The slow control command which sets the calibration enable to pulse emission is:</p>
+<pre><code>SET DIGx CALIBSEN ch val
+</code></pre>
+<p>where:</p>
+<ul>
+<li><code>x</code> is the digitizer number (0/1)</li>
+<li><code>ch</code> is the digitizer channel number (0-17)</li>
+<li><code>val</code> is the DAC value ranging from 0 to 4095</li>
+</ul>
+<h2 id="calibration-pulse-charge">Calibration pulse charge<a class="headerlink" href="#calibration-pulse-charge" title="Permanent link">#</a></h2>
+<p>The charge of the calibration pulse depends mainly on 3 parameters: pulse amplitude, pulse length, and gain. The length of the pulse should be as close as possible to few units, since this helps to have a PMT-like pulse. The amplitude can be adjusted programming a DAC, while the gain has only 2 levels, high or low.</p>
+<h3 id="calibration-pulse-length">Calibration pulse length<a class="headerlink" href="#calibration-pulse-length" title="Permanent link">#</a></h3>
+<p>The calibration pulse length is set by an 8 bit register, with a time unit corresponding to 10.4ns. Typically, useful values are on the order of few units, which generate quite good PMT-like pulses. The total charge can be set using both pulse length and the calibration pulse amplitude.</p>
+<h4 id="slow-control-command_7">Slow control command<a class="headerlink" href="#slow-control-command_7" title="Permanent link">#</a></h4>
+<p>The slow control command which sets the calibration pulse length is the following:</p>
+<pre><code>SET DIGx CALIBLEN val
+</code></pre>
+<p>where:</p>
+<ul>
+<li><code>x</code> is the digitizer number (0/1)</li>
+<li><code>val</code> is a number ranging from 0 to 255</li>
+</ul>
+<h3 id="calibration-pulse-amplitude">Calibration pulse amplitude<a class="headerlink" href="#calibration-pulse-amplitude" title="Permanent link">#</a></h3>
+<p>The pulse amplitude is set by a DAC mounted on the <strong>CalB</strong> and controlled by the Digitizer through a dedicated I2C bus. The DAC is a AD569XR 16 bit DAC with values ranging from 0 to 65535.</p>
+<h4 id="slow-control-command_8">Slow control command<a class="headerlink" href="#slow-control-command_8" title="Permanent link">#</a></h4>
+<p>The slow control command which sets the calibration pulse amplitude is the following:</p>
+<pre><code>SET DIGx CALIBAMP val
+</code></pre>
+<p>where:</p>
+<ul>
+<li><code>x</code> is the digitizer number (0/1)</li>
+<li><code>val</code> is the DAC value ranging from 0 to 65535</li>
+</ul>
+<h3 id="calibration-gain">Calibration gain<a class="headerlink" href="#calibration-gain" title="Permanent link">#</a></h3>
+<p>The calibration gain is a 2-range selection which allows multiplication of pulse amplitude by a factor. The high gain corresponds to a parameter of 1, while the low gain selection is 0.</p>
+<h4 id="slow-control-command_9">Slow control command<a class="headerlink" href="#slow-control-command_9" title="Permanent link">#</a></h4>
+<p>The slow control command which sets the calibration pulse amplitude is the following:</p>
+<pre><code>SET DIGx CALIBGAIN val
+</code></pre>
+<p>where:</p>
+<ul>
+<li><code>x</code> is the digitizer number (0/1)</li>
+<li><code>val</code> is the ccalibration gain (0/1)</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../pedestal/" class="btn btn-neutral float-left" title="Pedestal"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../daq/board-control/" class="btn btn-neutral float-right" title="Settings">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../pedestal/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../daq/board-control/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
