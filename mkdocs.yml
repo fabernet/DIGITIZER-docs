@@ -1,0 +1,26 @@
+site_name: Dig-Docs
+
+nav:
+ - Home: index.md
+ - Introduction: intro.md
+ - Slow Control: slow-control.md
+ - COMM&Sensors:
+   - LEDs: leds.md
+   - Sensors: sensors.md
+   - Peripherals: onboard-peripherals.md
+ - Setup:
+   - DAQ Parameters: setup/parameters.md
+   - Pedestal: setup/pedestal.md
+   - Calibrator: setup/calibrator.md
+ - DAQ:
+   - Settings: daq/board-control.md
+   - Timing: daq/timing.md
+ - ________:
+   - Appendix: appendix.md
+ - About: about.md
+
+markdown_extensions:
+  - toc:
+      permalink: "#"
+
+theme: readthedocs
