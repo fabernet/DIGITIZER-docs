@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Settings - Dig-Docs</title>
+    <title>Data Format - Dig-Docs</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Settings";
-        var mkdocs_page_input_path = "daq/board-control.md";
+        var mkdocs_page_name = "Data Format";
+        var mkdocs_page_input_path = "daq/data-format.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -71,23 +71,11 @@
               </ul>
               <p class="caption"><span class="caption-text">DAQ</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../data-format/">Data Format</a>
-                  </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Settings</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Data Format</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#front-end-enable">Front end enable</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#slow-control-command">Slow control command</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#stream-enable">Stream enable</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#slow-control-command_1">Slow control command</a>
-    </li>
-        </ul>
-    </li>
     </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../board-control/">Settings</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../timing/">Timing</a>
                   </li>
@@ -116,7 +104,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">DAQ</li>
-      <li class="breadcrumb-item active">Settings</li>
+      <li class="breadcrumb-item active">Data Format</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -125,41 +113,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="board-control">Board control<a class="headerlink" href="#board-control" title="Permanent link">#</a></h1>
-<p>There are some commands dedicated to control the DAQ on the Digitizer board. The most important one which allows to take data is described <a href="#stream-enable">here</a>.</p>
-<h2 id="front-end-enable">Front end enable<a class="headerlink" href="#front-end-enable" title="Permanent link">#</a></h2>
-<p>Enabling the front-end makes sense mainly for the debug of the HW. During normal operation, this mode is not required nor adviced.</p>
-<p>The aim of this mode is enabling the conversion process of the charge on the ADCs of the Low and High path of the integrator. All the HW signals (trigger, SPIs, BLR) are active and completely functional. Data are not transmitted to the DPB for data acquisition.</p>
-<p>Reception of the trigger is also enabled, and the ADC and TDC rate monitors are active and working.</p>
-<h3 id="slow-control-command">Slow control command<a class="headerlink" href="#slow-control-command" title="Permanent link">#</a></h3>
-<p>The slow control command which enable front-end is the following:</p>
-<pre><code>SET DIGx FESTATUS ch val
-</code></pre>
-<p>where:</p>
-<ul>
-<li><code>x</code> is the digitizer number (0/1)</li>
-<li><code>ch</code> is the digitizer channel number (0-17 or ALL)</li>
-<li><code>val</code> is 0 to disable or 1 to enable front-end</li>
-</ul>
-<h2 id="stream-enable">Stream enable<a class="headerlink" href="#stream-enable" title="Permanent link">#</a></h2>
-<p>This is the standard mode for data taking. Data transmission to the DPB is enabled and the front-end is also enabled to drive ADC signals and to perform hit time stamping. It is not needed to enable the front-end explicitly, as explained in this <a href="#front-end-enable">paragraph</a></p>
-<h3 id="slow-control-command_1">Slow control command<a class="headerlink" href="#slow-control-command_1" title="Permanent link">#</a></h3>
-<p>The slow control command which enables/disables front-end and starts/stops data taking is the following:</p>
-<pre><code>SET DIGx DAQSTATUS ch val
-</code></pre>
-<p>where:</p>
-<ul>
-<li><code>x</code> is the digitizer number (0/1)</li>
-<li><code>ch</code> is the digitizer channel number (0-17 or ALL)</li>
-<li><code>val</code> is 0 to disable or 1 to enable streaming data taking</li>
-</ul>
-<p>The command can be used to enable/disable the front-end and to start and stop the data transmission to the DPB. Depeding on <code>ch</code> option, the command is applied either to a single channel or, using a global parameter, enabling all the channels at the same time. </p>
+                <h1 id="data-format">Data format<a class="headerlink" href="#data-format" title="Permanent link">#</a></h1>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../data-format/" class="btn btn-neutral float-left" title="Data Format"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../timing/" class="btn btn-neutral float-right" title="Timing">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../setup/calibrator/" class="btn btn-neutral float-left" title="Calibrator"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../board-control/" class="btn btn-neutral float-right" title="Settings">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -182,10 +142,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../data-format/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../../setup/calibrator/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../timing/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../board-control/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
