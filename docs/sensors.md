@@ -1,8 +1,19 @@
 # Sensors
 
-Many sensors are available onboard that monitors various quantities: currents, voltages, temperature in different areas of the board, pressure and humidity. 
+Many sensors are available onboard to monitor various quantities: currents, voltages, temperature in different areas of the board, pressure and humidity. In the following paragraphs, the sensors and their relative slow control commands are divided into sections related to functionalities.
 
-## On board voltages and currents
+## On board voltages and currents schematics
+
+Voltage, temperature, pressure and relative humidity sensors are shown in the following schematic pages:
+
+!["Voltage and current sensors"][sensors]
+
+The currents drawn by power rails are measured by `INA139` devices, which converts the current into a voltage with the help of a resistor. The schematic is reported in the following figure:
+
+!["Current sensors"][I_sense]
+
+
+## On board voltages and currents readout
 
 This is the list of commands to read voltages and current:
 ```
@@ -23,7 +34,7 @@ where:
 
 - `x` is the digitizer number (0/1)
 
-## On board temperatures
+## On board temperatures readout
 
 There are many temperature sensors on board to check the working point of the front-end and the temperature fo the FPGA and power section.
 
@@ -51,9 +62,9 @@ where:
 
 - `x` is the digitizer number (0/1)
 
-## Other sensors
+## BME280 readout
 
-The board is equipped with a BME280, which provides Temperature, Relative Humidity, and Pressure. In [paragraph](#on-board-temperatures) we already showed the command to read the BME280 temperature. Here is the way to read pressure and Relative Humidity.
+The board is equipped with a BME280, which provides Temperature, Relative Humidity, and Pressure. The device is shown in [paragraph](on-board-voltages-and-currents-schematics) and is named U27. In [paragraph](#on-board-temperatures-readout) we already showed the command to read the BME280 temperature. Here is the way to read pressure and Relative Humidity.
 ```
 READ DIGx RELHUM
 READ DIGx PRESS
@@ -62,3 +73,6 @@ READ DIGx PRESS
 where:
 
 - `x` is the digitizer number (0/1)
+
+[sensors]: ./img/sensors.png "Voltage and current sensors"
+[I_sense]: ./img/I_sense.png "Current sensors"

@@ -20,5 +20,5 @@ where:
 - `val` is 0 to disable or 1 to enable front-end
 
 ## RFID
-This device can only be read y a RFID reader. The one we tested and showed functional is the ...
+This device can only be read by a RFID reader. The one we tested and showed functional is the 
 

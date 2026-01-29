@@ -13,6 +13,7 @@ nav:
    - Pedestal: setup/pedestal.md
    - Calibrator: setup/calibrator.md
  - DAQ:
+   - Data Format: daq/data-format.md
    - Settings: daq/board-control.md
    - Timing: daq/timing.md
  - ________:
