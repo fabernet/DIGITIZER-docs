@@ -73,6 +73,10 @@
               <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Data Format</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#no-subhit-data-format">No-subhit data format</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#subhit-data-format">Subhit data format</a>
+    </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../board-control/">Settings</a>
@@ -114,6 +118,12 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="data-format">Data format<a class="headerlink" href="#data-format" title="Permanent link">#</a></h1>
+<p>There are 2 defined data formats used by the digitizer to transfer data to the DAQ: one is implemented by the <code>subhit</code> FW while the second doesn't not. The <code>subhit</code> protocol has a lot of imnlications and the 2 data formats are not compatible. In the following paragraphs both will be defined in detail, to allow users to manage data.</p>
+<p>The <code>subhit</code> data format is the target protocol and will gradually replace the <code>no-subhit</code> one.</p>
+<h2 id="no-subhit-data-format">No-subhit data format<a class="headerlink" href="#no-subhit-data-format" title="Permanent link">#</a></h2>
+<p>This is the very first data format defined to transfer as much information as possible disregarding the rate optimization. It was defined to debug the FW and allow easily to decode all the received data. Moreover, this format does not impelement the <code>subhit</code> detection, as explained in the <code>DAQ</code> chapter of this documentation.</p>
+<h2 id="subhit-data-format">Subhit data format<a class="headerlink" href="#subhit-data-format" title="Permanent link">#</a></h2>
+<p>The <code>subhit</code> data format is the "engineered" protocol which exploits the capability of the Digitizer board to provide information during the dead time of charge measurement done by the ADCs of the High and Low range.</p>
               
             </div>
           </div><footer>
