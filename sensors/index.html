@@ -57,11 +57,13 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Sensors</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#on-board-voltages-and-currents">On board voltages and currents</a>
+    <li class="toctree-l2"><a class="reference internal" href="#on-board-voltages-and-currents-schematics">On board voltages and currents schematics</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#on-board-temperatures">On board temperatures</a>
+    <li class="toctree-l2"><a class="reference internal" href="#on-board-voltages-and-currents-readout">On board voltages and currents readout</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#other-sensors">Other sensors</a>
+    <li class="toctree-l2"><a class="reference internal" href="#on-board-temperatures-readout">On board temperatures readout</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bme280-readout">BME280 readout</a>
     </li>
     </ul>
                   </li>
@@ -119,11 +121,12 @@
               
                 <h1 id="sensors">Sensors<a class="headerlink" href="#sensors" title="Permanent link">#</a></h1>
 <p>Many sensors are available onboard to monitor various quantities: currents, voltages, temperature in different areas of the board, pressure and humidity. In the following paragraphs, the sensors and their relative slow control commands are divided into sections related to functionalities.</p>
-<h2 id="on-board-voltages-and-currents">On board voltages and currents<a class="headerlink" href="#on-board-voltages-and-currents" title="Permanent link">#</a></h2>
-<p>The Voltage, Temperature, pressure and relative humidity sensors are shown in the following schematic pages:</p>
+<h2 id="on-board-voltages-and-currents-schematics">On board voltages and currents schematics<a class="headerlink" href="#on-board-voltages-and-currents-schematics" title="Permanent link">#</a></h2>
+<p>Voltage, temperature, pressure and relative humidity sensors are shown in the following schematic pages:</p>
 <p><img alt="&quot;Voltage and current sensors&quot;" src="../img/V_I_sensors.png" title="Voltage and current sensors" /></p>
 <p>The currents drawn by power rails are measured by <code>INA139</code> devices, which converts the current into a voltage with the help of a resistor. The schematic is reported in the following figure:</p>
 <p><img alt="&quot;Current sensors&quot;" src="../img/V_I_sensors_2.png" title="Current sensors" /></p>
+<h2 id="on-board-voltages-and-currents-readout">On board voltages and currents readout<a class="headerlink" href="#on-board-voltages-and-currents-readout" title="Permanent link">#</a></h2>
 <p>This is the list of commands to read voltages and current:</p>
 <pre><code>READ DIGx 3V3A
 READ DIGx 12VA
@@ -142,7 +145,7 @@ READ DIGx I5V0D
 <ul>
 <li><code>x</code> is the digitizer number (0/1)</li>
 </ul>
-<h2 id="on-board-temperatures">On board temperatures<a class="headerlink" href="#on-board-temperatures" title="Permanent link">#</a></h2>
+<h2 id="on-board-temperatures-readout">On board temperatures readout<a class="headerlink" href="#on-board-temperatures-readout" title="Permanent link">#</a></h2>
 <p>There are many temperature sensors on board to check the working point of the front-end and the temperature fo the FPGA and power section.</p>
 <p>The following commands return the temperature of various areas of the board </p>
 <pre><code>READ DIGx TFPGA     # T of FPGA
@@ -163,8 +166,8 @@ READ DIGx TCH11R
 <ul>
 <li><code>x</code> is the digitizer number (0/1)</li>
 </ul>
-<h2 id="other-sensors">Other sensors<a class="headerlink" href="#other-sensors" title="Permanent link">#</a></h2>
-<p>The board is equipped with a BME280, which provides Temperature, Relative Humidity, and Pressure. In <a href="#on-board-temperatures">paragraph</a> we already showed the command to read the BME280 temperature. Here is the way to read pressure and Relative Humidity.</p>
+<h2 id="bme280-readout">BME280 readout<a class="headerlink" href="#bme280-readout" title="Permanent link">#</a></h2>
+<p>The board is equipped with a BME280, which provides Temperature, Relative Humidity, and Pressure. The device is shown in <a href="on-board-voltages-and-currents-schematics">paragraph</a> and is named U27. In <a href="#on-board-temperatures-readout">paragraph</a> we already showed the command to read the BME280 temperature. Here is the way to read pressure and Relative Humidity.</p>
 <pre><code>READ DIGx RELHUM
 READ DIGx PRESS
 </code></pre>
