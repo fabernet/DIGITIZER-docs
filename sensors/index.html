@@ -120,9 +120,10 @@
                 <h1 id="sensors">Sensors<a class="headerlink" href="#sensors" title="Permanent link">#</a></h1>
 <p>Many sensors are available onboard to monitor various quantities: currents, voltages, temperature in different areas of the board, pressure and humidity. In the following paragraphs, the sensors and their relative slow control commands are divided into sections related to functionalities.</p>
 <h2 id="on-board-voltages-and-currents">On board voltages and currents<a class="headerlink" href="#on-board-voltages-and-currents" title="Permanent link">#</a></h2>
-<p>The sensors </p>
-<p><img alt="&quot;Voltage and current sensors&quot;" src="../img/V_I_sensors.png" title="Voltage and current sensors" />
-<img alt="&quot;Current sensors&quot;" src="../img/V_I_sensors_2.png" title="Current sensors" /></p>
+<p>The Voltage, Temperature, pressure and relative humidity sensors are shown in the following schematic pages:</p>
+<p><img alt="&quot;Voltage and current sensors&quot;" src="../img/V_I_sensors.png" title="Voltage and current sensors" /></p>
+<p>The currents drawn by power rails are measured by <code>INA139</code> devices, which converts the current into a voltage with the help of a resistor. The schematic is reported in the following figure:</p>
+<p><img alt="&quot;Current sensors&quot;" src="../img/V_I_sensors_2.png" title="Current sensors" /></p>
 <p>This is the list of commands to read voltages and current:</p>
 <pre><code>READ DIGx 3V3A
 READ DIGx 12VA
