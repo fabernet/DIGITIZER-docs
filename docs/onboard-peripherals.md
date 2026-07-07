@@ -20,5 +20,6 @@ where:
 - `val` is 0 to disable or 1 to enable front-end
 
 ## RFID
-This device can only be read by a RFID reader. The one we tested and showed functional is the 
+
+Since the very first release of the Digitizer, DIGv2, an RFID device has been available on board. The chosen device is the `Murata LXMS21ACMF-218`, which can be read by a dedicated RFID reader.
 

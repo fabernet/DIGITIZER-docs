@@ -64,7 +64,7 @@ where:
 
 ## BME280 readout
 
-The board is equipped with a BME280, which provides Temperature, Relative Humidity, and Pressure. The device is shown in [paragraph](on-board-voltages-and-currents-schematics) and is named U27. In [paragraph](#on-board-temperatures-readout) we already showed the command to read the BME280 temperature. Here is the way to read pressure and Relative Humidity.
+The board is equipped with a BME280, which provides Temperature, Relative Humidity, and Pressure. The device is shown in [paragraph](#on-board-voltages-and-currents-schematics) and is named U27. In [paragraph](#on-board-temperatures-readout) we already showed the command to read the BME280 temperature. Here is the way to read pressure and Relative Humidity.
 ```
 READ DIGx RELHUM
 READ DIGx PRESS
