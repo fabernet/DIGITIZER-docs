@@ -61,7 +61,7 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#eeprom">EEPROM</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#eeprom-sc">EEPROM SC</a>
+    <li class="toctree-l3"><a class="reference internal" href="#eeprom-sc-commands">EEPROM SC Commands</a>
     </li>
         </ul>
     </li>
@@ -125,9 +125,9 @@
               
                 <h1 id="on-board-peripherals">On board peripherals<a class="headerlink" href="#on-board-peripherals" title="Permanent link">#</a></h1>
 <h2 id="eeprom">EEPROM<a class="headerlink" href="#eeprom" title="Permanent link">#</a></h2>
-<p>A small EEPROM has a double function of storing few bytes for the user and also implementing OUI and EID unique number identification.</p>
-<p>The communication protocol is I2C.</p>
-<h4 id="eeprom-sc">EEPROM SC<a class="headerlink" href="#eeprom-sc" title="Permanent link">#</a></h4>
+<p>A 2-Kbit I2C serial EEPROM from Microchip, with part number 24AA02E48T, is onboard. This device has a double function: storing few bytes available to the user and implementing OUI and EID unique number identification. </p>
+<p>An OUI (Organizationally Unique Identifier) is a 24-bit code, usually used to identify a device manufacturer. An EID (eUICC Identifier) is a 32-digit global serial number used to identify a device in a unique way. These 2 codes can be used to univocally identify the Digitizer board.</p>
+<h3 id="eeprom-sc-commands">EEPROM SC Commands<a class="headerlink" href="#eeprom-sc-commands" title="Permanent link">#</a></h3>
 <p>The slow control command which enable front-end is the following:</p>
 <pre><code>READ DIGx OUI
 READ DIGx EID
@@ -135,11 +135,10 @@ READ DIGx EID
 <p>where:</p>
 <ul>
 <li><code>x</code> is the digitizer number (0/1)</li>
-<li><code>ch</code> is the digitizer channel number (0-17 or ALL)</li>
-<li><code>val</code> is 0 to disable or 1 to enable front-end</li>
 </ul>
 <h2 id="rfid">RFID<a class="headerlink" href="#rfid" title="Permanent link">#</a></h2>
 <p>Since the very first release of the Digitizer, DIGv2, an RFID device has been available on board. The chosen device is the <code>Murata LXMS21ACMF-218</code>, which can be read by a dedicated RFID reader.</p>
+<p>Due to the lack of availability of Murata RFID components at the time of production, the IC will not be mounted and will be replaced by a data matrix code printed on the PCB (top and bottom layers with different codes).</p>
               
             </div>
           </div><footer>

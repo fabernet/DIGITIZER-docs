@@ -94,7 +94,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#coonnecting-through-the-dpb">Coonnecting through the DPB</a>
+    <li class="toctree-l2"><a class="reference internal" href="#connecting-through-the-dpb">Connecting through the DPB</a>
     </li>
     </ul>
                   </li>
@@ -128,7 +128,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="appendix">Appendix<a class="headerlink" href="#appendix" title="Permanent link">#</a></h1>
-<p>In this paragraph, a detailed explanation of technical arguments is given.</p>
+<p>This paragraph is dedicated to detailed explanation of technical arguments.</p>
 <h2 id="slow-control-protocols">Slow control protocols<a class="headerlink" href="#slow-control-protocols" title="Permanent link">#</a></h2>
 <p>The slow control channel to communicate with the digitizer board is the serial port connecting it to the DPB. Natively, there are 2 possible communication protocols over this serial link: the so-called <code>GUI</code> and the <code>COPacket</code>.</p>
 <p>The <code>GUI</code> protocol was developed as a mean to communicate "visually" with the digitizer board. There is a menu implemented and commands can be issued sending ASCII codes through a terminal or an application. This protocol is not suitable to be implemented in a "machine readable" way, since there is no control over the character stream sent or returned by the digitizer. This is meant essentially for "human" interaction through a terminal, though a lot of effort has been done to use it also in Python scripts.</p>
@@ -136,18 +136,19 @@
 <h3 id="dpb-slowcontrolapp">dpb-slowcontrolapp<a class="headerlink" href="#dpb-slowcontrolapp" title="Permanent link">#</a></h3>
 <p>This is the target slow control procedure: the DPB implements a service, called <code>dpb-slowcontrolapp</code>, which manages the interface to the digitizer. Details of this implementation can be found <a href="https://gitlab.cern.ch/hk-dpb-team/hk_petalinux_project_dpb2_2022_2/-/blob/master/doc/dpb-slowcontrolapp-howto.md?ref_type=heads">here</a>.</p>
 <h3 id="digitizer-gui">Digitizer GUI<a class="headerlink" href="#digitizer-gui" title="Permanent link">#</a></h3>
+<p>The GUI protocol is intended for <em>human interaction friendly</em>, i.e. is designed to be used from a serial terminal in an interactive way. This makes it very confortable for debug and tests, but almost impossible to exchange commands efficiently with an application or a script.</p>
 <h3 id="digitizer-copkt">Digitizer COPkt<a class="headerlink" href="#digitizer-copkt" title="Permanent link">#</a></h3>
-<p>The protocol is base on packets starting with the <code>$</code> leading character and ending with the <code>#</code> trailing character. The command follows immediately after the <code>$</code> character; it is a string which may or may not require one or more parameters. For example, to have a list of available commands the <code>$help#</code> command can be issued.</p>
+<p>The protocol is based on packets of ASCII characters; each packet starts with the <code>$</code> leading character and is terminated by the <code>#</code> trailing character. The command follows immediately after the <code>$</code> character: it is a string which may or may not require one or more parameters. For example, to have a list of available commands, type the <code>$help#</code> command.</p>
+<p>Available commands are shown hereafter, taken from the <em>COPacketCmdHkDig.cpp</em> file which implements the whole command set.</p>
 <pre><code>//
 //  COPacketCmdHkDig.cpp
 //
 //  Created by Faber on 13 Jul 2022
-//  Copyright Â© 2018 Faber. All rights reserved.
 //
 
 #include &quot;COPacketCmdHkDig.h&quot;
 
-const uint16_t   HkDigCmdSize = 99;
+const uint16_t   HkDigCmdSize = 100;
 _COPacketCmdType HkDigCommands[HkDigCmdSize] = {
     // Parameters commands
     {&quot;gthn&quot;, HKDIG_GET_THR_NUM,      &quot; ch# Get ch thr&quot;},
@@ -206,8 +207,8 @@ _COPacketCmdType HkDigCommands[HkDigCmdSize] = {
     {&quot;gpeds&quot;, HKDIG_GET_PED_STAGGER,  &quot;# Get stagger (10.4ns)&quot;},
 
     // OD commands
-    {&quot;sodsel&quot;, HKDIG_SET_OD_SEL_REG, &quot; ch 0/1# Set od ch&quot;},
-    {&quot;godsel&quot;, HKDIG_GET_OD_SEL_REG, &quot;# Get od sel&quot;},
+    {&quot;sodsel&quot;, HKDIG_SET_OD_SEL_REG, &quot; ch 0/1# Set OD ch&quot;},
+    {&quot;godsel&quot;, HKDIG_GET_OD_SEL_REG, &quot;# Get OD sel&quot;},
 
     {&quot;ghwv&quot;, HKDIG_GET_HW_VER,       &quot;# HW Ver&quot;},
     {&quot;ggwv&quot;, HKDIG_GET_GW_VER,       &quot;# GW Ver&quot;},
@@ -218,9 +219,9 @@ _COPacketCmdType HkDigCommands[HkDigCmdSize] = {
     {&quot;gupt&quot;, HKDIG_GET_UPTIME,       &quot;# Uptime&quot;},
     {&quot;raur&quot;, HKDIG_RST_AURORA_LINK,  &quot;# Rst Aurora&quot;},
     {&quot;sclk&quot;, HKDIG_SET_CLOCK,        &quot; val# loc(0)-dpb(1)&quot;},
-    {&quot;gclk&quot;, HKDIG_GET_CLOCK,        &quot;# Get clk&quot;},
+    {&quot;gclk&quot;, HKDIG_GET_CLOCK,        &quot;# Clk loc(0)-dpb(1)&quot;},
     {&quot;gtlck&quot;, HKDIG_GET_TLNK_LOCK,   &quot;# Get TLock&quot;},
-    {&quot;spsc&quot;, HKDIG_SET_ADS_PSC,      &quot;# Set PSC&quot;},
+    {&quot;spsc&quot;, HKDIG_SET_ADS_PSC,      &quot; 0-3# Set OD-ADC PSC&quot;},
 
     {&quot;goui&quot;, HKDIG_GET_EEPROM_OUI,   &quot;# Get OUI&quot;},
     {&quot;geid&quot;, HKDIG_GET_EEPROM_EID,   &quot;# Get EID&quot;},
@@ -234,8 +235,8 @@ _COPacketCmdType HkDigCommands[HkDigCmdSize] = {
     {&quot;grmm&quot;, HKDIG_GET_RMON_MUX_N,   &quot;# Get MUXr&quot;},
     {&quot;grmr&quot;, HKDIG_GET_RMON_RST_N,   &quot;# Get RSTr&quot;},
     {&quot;runr&quot;, HKDIG_RUN_RMON,         &quot;# Run RMon&quot;},
-    {&quot;rmne&quot;, HKDIG_RUN_RMON_EN,      &quot;# En rmon&quot;},
-    {&quot;rmnd&quot;, HKDIG_RUN_RMON_DIS,     &quot;# Dis rmon&quot;},
+    {&quot;rmne&quot;, HKDIG_RUN_RMON_EN,      &quot;ch# En rmon&quot;},
+    {&quot;rmnd&quot;, HKDIG_RUN_RMON_DIS,     &quot;ch# Dis rmon&quot;},
 
     // Sensor commands
     {&quot;g3v3a&quot;,  HKDIG_GET_BOARD_3V3A,  &quot;# 3V3A&quot;},
@@ -263,8 +264,9 @@ _COPacketCmdType HkDigCommands[HkDigCmdSize] = {
     {&quot;s5v0a&quot;,   HKDIG_SET_5V0A,          &quot; num# Set 5V0A&quot;},
     {&quot;s5v0e&quot;,   HKDIG_SET_5V0A_EEPROM,   &quot; num# WrEE&quot;},
 
-    {&quot;stbr&quot;,    HKDIG_SET_TB_REG,        &quot; num# Set TBr&quot;},
-    {&quot;gtbr&quot;,    HKDIG_GET_TB_REG,        &quot;# Get TBr&quot;},
+    {&quot;stbr&quot;,    HKDIG_SET_TB_REG,        &quot; num# Set TBc&quot;},
+    {&quot;gtbr&quot;,    HKDIG_GET_TB_REG,        &quot;# Get TBc&quot;},
+    {&quot;gtbs&quot;,    HKDIG_GET_TB_ST,         &quot;# Get TBs&quot;},
 
     {&quot;gbme&quot;,   HKDIG_GET_BME_DATA,    &quot;# BME&quot;},
     {&quot;gtcal&quot;,  HKDIG_GET_BME_TCAL,    &quot;# TCal&quot;},
@@ -280,7 +282,7 @@ _COPacketCmdList HkDigCmdList = {
     HkDigCommands
 };
 </code></pre>
-<h2 id="coonnecting-through-the-dpb">Coonnecting through the DPB<a class="headerlink" href="#coonnecting-through-the-dpb" title="Permanent link">#</a></h2>
+<h2 id="connecting-through-the-dpb">Connecting through the DPB<a class="headerlink" href="#connecting-through-the-dpb" title="Permanent link">#</a></h2>
 <p>The Digitizer communicates through a serial port: when it is connected to the DPB, the communication can be routed by the DPB.</p>
 <p>After logging in the DPB with <em>ssh</em>, move to the script folder and activate socat for both Digitizers:</p>
 <pre><code>$ bash run-socat.sh 1 dpb-dig0-port
