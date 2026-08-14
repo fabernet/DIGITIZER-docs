@@ -31,21 +31,23 @@ The trigger signal is sampled by each on each clock and, decoding where the edge
 
 ### Timing SC
 
-A command allows the user to read back the status of the clock: it can be LOCAL or DPB, according on how the timing information are being generated.
+A command allows the user to read back the status of the clock: it returns LOCAL or DPB, according on how the timing information are being generated.
 
 ```
-READ DIGx CLOCK ????
-```
-where:
-
-- `x` is the digitizer number (0/1)
-
-There is a specific command which can be used to force the choice of the LOCAL or DPB clock (this command shouldn't be used):
-```
-SET DIGx CLOCK val ????
+READ DIGx CLOCK
 ```
 where:
 
 - `x` is the digitizer number (0/1)
-- `val` selects the calibration type (0/2)
 
+There is a specific command which can be used to force the choice of the LOCAL or DPB clock:
+```
+SET DIGx CLOCK val
+```
+where:
+
+- `x` is the digitizer number (0/1)
+- `val` selects the type (LOCAL/DPB)
+
+ This command shouldn't be used without knowing exactly what you are doing: if the Digitizer is forced to local clock while timing information are being received using the DPB clock and the TDC counters are synchronous to DPB clock, there will be periodic unlocks due to the wrong selected clock.
+ 
