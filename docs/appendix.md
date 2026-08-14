@@ -1,6 +1,6 @@
 # Appendix
 
-In this paragraph, a detailed explanation of technical arguments is given.
+This paragraph is dedicated to detailed explanation of technical arguments.
 
 ## Slow control protocols
 
@@ -16,22 +16,24 @@ This is the target slow control procedure: the DPB implements a service, called 
 
 ### Digitizer GUI
 
+The GUI protocol is intended for _human interaction friendly_, i.e. is designed to be used from a serial terminal in an interactive way. This makes it very confortable for debug and tests, but almost impossible to exchange commands efficiently with an application or a script.
 
 ### Digitizer COPkt
 
-The protocol is base on packets starting with the `$` leading character and ending with the `#` trailing character. The command follows immediately after the `$` character; it is a string which may or may not require one or more parameters. For example, to have a list of available commands the `$help#` command can be issued.
+The protocol is based on packets of ASCII characters; each packet starts with the `$` leading character and is terminated by the `#` trailing character. The command follows immediately after the `$` character: it is a string which may or may not require one or more parameters. For example, to have a list of available commands, type the `$help#` command.
+
+Available commands are shown hereafter, taken from the _COPacketCmdHkDig.cpp_ file which implements the whole command set.
 
 ```
 //
 //  COPacketCmdHkDig.cpp
 //
 //  Created by Faber on 13 Jul 2022
-//  Copyright Â© 2018 Faber. All rights reserved.
 //
 
 #include "COPacketCmdHkDig.h"
 
-const uint16_t   HkDigCmdSize = 99;
+const uint16_t   HkDigCmdSize = 100;
 _COPacketCmdType HkDigCommands[HkDigCmdSize] = {
 	// Parameters commands
 	{"gthn", HKDIG_GET_THR_NUM,      " ch# Get ch thr"},
@@ -90,8 +92,8 @@ _COPacketCmdType HkDigCommands[HkDigCmdSize] = {
 	{"gpeds", HKDIG_GET_PED_STAGGER,  "# Get stagger (10.4ns)"},
 
 	// OD commands
-	{"sodsel", HKDIG_SET_OD_SEL_REG, " ch 0/1# Set od ch"},
-	{"godsel", HKDIG_GET_OD_SEL_REG, "# Get od sel"},
+	{"sodsel", HKDIG_SET_OD_SEL_REG, " ch 0/1# Set OD ch"},
+	{"godsel", HKDIG_GET_OD_SEL_REG, "# Get OD sel"},
 
 	{"ghwv", HKDIG_GET_HW_VER,       "# HW Ver"},
 	{"ggwv", HKDIG_GET_GW_VER,       "# GW Ver"},
@@ -102,9 +104,9 @@ _COPacketCmdType HkDigCommands[HkDigCmdSize] = {
 	{"gupt", HKDIG_GET_UPTIME,       "# Uptime"},
 	{"raur", HKDIG_RST_AURORA_LINK,  "# Rst Aurora"},
 	{"sclk", HKDIG_SET_CLOCK,        " val# loc(0)-dpb(1)"},
-	{"gclk", HKDIG_GET_CLOCK,        "# Get clk"},
+	{"gclk", HKDIG_GET_CLOCK,        "# Clk loc(0)-dpb(1)"},
 	{"gtlck", HKDIG_GET_TLNK_LOCK,   "# Get TLock"},
-	{"spsc", HKDIG_SET_ADS_PSC,      "# Set PSC"},
+	{"spsc", HKDIG_SET_ADS_PSC,      " 0-3# Set OD-ADC PSC"},
 
 	{"goui", HKDIG_GET_EEPROM_OUI,   "# Get OUI"},
 	{"geid", HKDIG_GET_EEPROM_EID,   "# Get EID"},
@@ -118,8 +120,8 @@ _COPacketCmdType HkDigCommands[HkDigCmdSize] = {
 	{"grmm", HKDIG_GET_RMON_MUX_N,   "# Get MUXr"},
 	{"grmr", HKDIG_GET_RMON_RST_N,   "# Get RSTr"},
 	{"runr", HKDIG_RUN_RMON,         "# Run RMon"},
-	{"rmne", HKDIG_RUN_RMON_EN,      "# En rmon"},
-	{"rmnd", HKDIG_RUN_RMON_DIS,     "# Dis rmon"},
+	{"rmne", HKDIG_RUN_RMON_EN,      "ch# En rmon"},
+	{"rmnd", HKDIG_RUN_RMON_DIS,     "ch# Dis rmon"},
 
 	// Sensor commands
 	{"g3v3a",  HKDIG_GET_BOARD_3V3A,  "# 3V3A"},
@@ -147,8 +149,9 @@ _COPacketCmdType HkDigCommands[HkDigCmdSize] = {
 	{"s5v0a",  	HKDIG_SET_5V0A,   		 " num# Set 5V0A"},
 	{"s5v0e",  	HKDIG_SET_5V0A_EEPROM,   " num# WrEE"},
 
-	{"stbr",  	HKDIG_SET_TB_REG,  		 " num# Set TBr"},
-	{"gtbr",  	HKDIG_GET_TB_REG,  		 "# Get TBr"},
+	{"stbr",  	HKDIG_SET_TB_REG,  		 " num# Set TBc"},
+	{"gtbr",  	HKDIG_GET_TB_REG,  		 "# Get TBc"},
+	{"gtbs",  	HKDIG_GET_TB_ST,  		 "# Get TBs"},
 
 	{"gbme",   HKDIG_GET_BME_DATA,    "# BME"},
 	{"gtcal",  HKDIG_GET_BME_TCAL,    "# TCal"},
@@ -164,8 +167,7 @@ _COPacketCmdList HkDigCmdList = {
     HkDigCommands
 };
 ```
-
-## Coonnecting through the DPB
+## Connecting through the DPB
 
 The Digitizer communicates through a serial port: when it is connected to the DPB, the communication can be routed by the DPB.
 

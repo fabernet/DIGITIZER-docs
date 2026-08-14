@@ -9,4 +9,9 @@ In case it is desirable to render the documentation locally, do the following:
 - from shell (e.g. WSL) launch the MkDocs server: `$ mkdocs serve`
 - Doc pages will be locally rendered in a browser at URL: http://127.0.0.1:8000/
 
+To publish any changes to the documentation on the "github.io" page, use the following command:
+```
+mkdocs gh-deploy
+```
+
 Documentation on how to use `MkDocs` can be found [here](https://www.mkdocs.org/).
