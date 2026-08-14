@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Data Format - Dig-Docs</title>
+    <title>HW setup - Dig-Docs</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Data Format";
-        var mkdocs_page_input_path = "daq/data-format.md";
+        var mkdocs_page_name = "HW setup";
+        var mkdocs_page_input_path = "setup/hw-setup.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -61,29 +61,27 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Setup</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../setup/parameters/">DAQ Parameters</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../setup/pedestal/">Pedestal</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../setup/calibrator/">Calibrator</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../setup/hw-setup/">HW setup</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">DAQ</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Data Format</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../parameters/">DAQ Parameters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../pedestal/">Pedestal</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../calibrator/">Calibrator</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">HW setup</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#no-subhit-data-format">No-subhit data format</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#subhit-data-format">Subhit data format</a>
+    <li class="toctree-l2"><a class="reference internal" href="#slow-control-command">Slow control command</a>
     </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../board-control/">Settings</a>
+              </ul>
+              <p class="caption"><span class="caption-text">DAQ</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../daq/data-format/">Data Format</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../timing/">Timing</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../daq/board-control/">Settings</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../daq/timing/">Timing</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">________</span></p>
@@ -109,8 +107,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">DAQ</li>
-      <li class="breadcrumb-item active">Data Format</li>
+          <li class="breadcrumb-item">Setup</li>
+      <li class="breadcrumb-item active">HW setup</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -119,20 +117,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="data-format">Data format<a class="headerlink" href="#data-format" title="Permanent link">#</a></h1>
-<p>There are 2 defined data formats used by the digitizer to transfer data to the DAQ: one is implemented by the <code>subhit</code> FW while the second doesn't not. The <code>subhit</code> protocol has a lot of imnlications and the 2 data formats are not compatible. In the following paragraphs both will be defined in detail, to allow users to manage data.</p>
-<p>The <code>subhit</code> data format is the target protocol and will gradually replace the <code>no-subhit</code> one.</p>
-<h2 id="no-subhit-data-format">No-subhit data format<a class="headerlink" href="#no-subhit-data-format" title="Permanent link">#</a></h2>
-<p>This is the very first data format defined to transfer as much information as possible disregarding the rate optimization. It was defined to debug the FW and allow easily to decode all the received data. Moreover, this format does not impelement the <code>subhit</code> detection, as explained in the <code>DAQ</code> chapter of this documentation.</p>
-<h2 id="subhit-data-format">Subhit data format<a class="headerlink" href="#subhit-data-format" title="Permanent link">#</a></h2>
-<p>The <code>subhit</code> data format is the "engineered" protocol which exploits the capability of the Digitizer board to provide information during the dead time of charge measurement done by the ADCs of the High and Low range.</p>
-<p>Detailed info on the <strong>subhit</strong> data format can be found in a dedicated page <a href="https://wiki.hyperk.org/do/view/HyperK/Digitizer">here</a></p>
+                <h1 id="hw-setup">HW setup<a class="headerlink" href="#hw-setup" title="Permanent link">#</a></h1>
+<p>Starting from DIGv5, the Analog 5 volts power rail is set by a DAC, the <strong>MCP4725A0T-E/CH</strong>. This DAC has a <em>EEPROM</em> which contains the value loaded at power up. This default value will be programmed during the production to the desired value.</p>
+<p>Since DIGv5, the 5V power rail provided to the OD has a separate source.</p>
+<h3 id="slow-control-command">Slow control command<a class="headerlink" href="#slow-control-command" title="Permanent link">#</a></h3>
+<p>The slow control command which sets the <em>5VA</em> is the following:</p>
+<pre><code>SET DIGx SET5VA val
+</code></pre>
+<p>where:</p>
+<ul>
+<li><code>x</code> is the digitizer number (0/1)</li>
+<li><code>val</code> is the 5VA DAC value ranging from 0 to 4095.</li>
+</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../../setup/hw-setup/" class="btn btn-neutral float-left" title="HW setup"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../board-control/" class="btn btn-neutral float-right" title="Settings">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../calibrator/" class="btn btn-neutral float-left" title="Calibrator"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../daq/data-format/" class="btn btn-neutral float-right" title="Data Format">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -155,10 +157,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../../setup/hw-setup/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../calibrator/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../board-control/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../../daq/data-format/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

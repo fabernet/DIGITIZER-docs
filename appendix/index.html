@@ -68,6 +68,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../setup/calibrator/">Calibrator</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../setup/hw-setup/">HW setup</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">DAQ</span></p>
               <ul>
@@ -91,6 +93,8 @@
     <li class="toctree-l3"><a class="reference internal" href="#digitizer-copkt">Digitizer COPkt</a>
     </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#coonnecting-through-the-dpb">Coonnecting through the DPB</a>
     </li>
     </ul>
                   </li>
@@ -276,6 +280,21 @@ _COPacketCmdList HkDigCmdList = {
     HkDigCommands
 };
 </code></pre>
+<h2 id="coonnecting-through-the-dpb">Coonnecting through the DPB<a class="headerlink" href="#coonnecting-through-the-dpb" title="Permanent link">#</a></h2>
+<p>The Digitizer communicates through a serial port: when it is connected to the DPB, the communication can be routed by the DPB.</p>
+<p>After logging in the DPB with <em>ssh</em>, move to the script folder and activate socat for both Digitizers:</p>
+<pre><code>$ bash run-socat.sh 1 dpb-dig0-port
+$ bash run-socat.sh 2 dpb-dig1-port
+</code></pre>
+<p>Since the OS instantiates the serial ports for the 2 Digitizers as <code>/dev/ttyUL1</code> and <code>/dev/ttyUL2</code>, the index <code>1</code> and <code>2</code> in the <code>run-socat.sh</code> command are fixed. Tipically, we choose <code>9001</code> as the dpb-dig-port for Digitizer 0, and <code>9002</code> for Digitizer 1.</p>
+<p>On the Host, clone the  <strong>DiscreteSoftware</strong> repo and, in the <code>docs</code> folder, run the vcom.sh script:</p>
+<pre><code>bash vcom.sh 0 dpb-ip-address dpb-dig-port
+</code></pre>
+<p>The <code>vcom.sh</code> script instantiates a serial port in the directory <code>install</code> of the repo. To test the <em>socat tunnelling</em>, use a serial communication program like <code>microcom</code> or <code>minicom</code>:</p>
+<pre><code>$ microcom -p &lt;repo-path&gt;/install/vmodem0
+</code></pre>
+<p>The python scripts of the <strong>DiscreteSoftware</strong> repo are now able to communicate to the Digitizer using this <em>tunnel</em> serial port.</p>
+<p>For more detailed information, read the documentation in the folder <code>docs</code> inside the <strong>DiscreteSoftware</strong> repo.</p>
               
             </div>
           </div><footer>

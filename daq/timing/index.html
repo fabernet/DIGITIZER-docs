@@ -68,6 +68,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../setup/calibrator/">Calibrator</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../setup/hw-setup/">HW setup</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">DAQ</span></p>
               <ul class="current">
@@ -141,21 +143,22 @@ The signals are:</p>
 <p>The TDC algorithm is a classical 8-phase TDC: the incoming 125MHz clock is multiplied by 4 up to 500MHz; these high speed clock is then properly delayed to have 8 replica of the clock at the same frequency but at different phases.</p>
 <p>The trigger signal is sampled by each on each clock and, decoding where the edge of the trigger falls, the 250ps time stamping is implemented. The complexity of the code is also in "moving" the sampled information from one phase to the other allowing as much as possible routing time to obtain timing closure of the FW. At the end of the conversion, the encoded information resides in the 3 bits provided by the TDC in the clock domain corresponding to phase 0.</p>
 <h3 id="timing-sc">Timing SC<a class="headerlink" href="#timing-sc" title="Permanent link">#</a></h3>
-<p>A command allows the user to read back the status of the clock: it can be LOCAL or DPB, according on how the timing information are being generated.</p>
-<pre><code>READ DIGx CLOCK ????
+<p>A command allows the user to read back the status of the clock: it returns LOCAL or DPB, according on how the timing information are being generated.</p>
+<pre><code>READ DIGx CLOCK
 </code></pre>
 <p>where:</p>
 <ul>
 <li><code>x</code> is the digitizer number (0/1)</li>
 </ul>
-<p>There is a specific command which can be used to force the choice of the LOCAL or DPB clock (this command shouldn't be used):</p>
-<pre><code>SET DIGx CLOCK val ????
+<p>There is a specific command which can be used to force the choice of the LOCAL or DPB clock:</p>
+<pre><code>SET DIGx CLOCK val
 </code></pre>
 <p>where:</p>
 <ul>
 <li><code>x</code> is the digitizer number (0/1)</li>
-<li><code>val</code> selects the calibration type (0/2)</li>
+<li><code>val</code> selects the type (LOCAL/DPB)</li>
 </ul>
+<p>This command shouldn't be used without knowing exactly what you are doing: if the Digitizer is forced to local clock while timing information are being received using the DPB clock and the TDC counters are synchronous to DPB clock, there will be periodic unlocks due to the wrong selected clock.</p>
               
             </div>
           </div><footer>
