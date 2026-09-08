@@ -127,7 +127,7 @@
                 <h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">#</a></h1>
 <p>This documentation explains the working principle of the Digitizer board, from the HW, FW, and SW point of view.</p>
 <h2 id="choosing-the-fw">Choosing the FW<a class="headerlink" href="#choosing-the-fw" title="Permanent link">#</a></h2>
-<p>FPGA FW is stored in <strong>mcs</strong> files, whose names carry information about the FW content itself. The name (at least of the latest releases) consists of a <em>GW code</em>, a suffix which identify the serial protocol, and a suffix which identifies the DPB HW version compatibility.</p>
+<p>FPGA FW is stored in <strong>mcs</strong> files, whose names carry information about the FW content itself. The name (at least of the latest releases) consists of a <em>GW code</em>, a suffix which identify the serial protocol, and a suffix which identifies the DPB HW version compatibility. Currently, the FW files are stored in a dedicated shared folder on <a href="https://cernbox.cern.ch/files/spaces/eos/user/f/fameli/DIGITIZER-FW?items-per-page=100&amp;files-spaces-generic-view-mode=resource-table&amp;tiles-size=2"><em>CERNbox</em></a>.</p>
 <p>The <strong>mcs</strong> file is intended to be uploaded into the non-volatile memory of the board, allowing a permanent programming of the FPGA at power up.</p>
 <h3 id="gw-code">GW Code<a class="headerlink" href="#gw-code" title="Permanent link">#</a></h3>
 <p>The so-called GW code of the Digitizer consists of a 16-bit hex word, which specifies HW and FW version of the file.</p>
