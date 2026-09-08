@@ -46,6 +46,16 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Introduction</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#choosing-the-fw">Choosing the FW</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#gw-code">GW Code</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#serial-protocol">Serial protocol</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dpb-hw-version">DPB HW version</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -116,6 +126,38 @@
               
                 <h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">#</a></h1>
 <p>This documentation explains the working principle of the Digitizer board, from the HW, FW, and SW point of view.</p>
+<h2 id="choosing-the-fw">Choosing the FW<a class="headerlink" href="#choosing-the-fw" title="Permanent link">#</a></h2>
+<p>FPGA FW is stored in <strong>mcs</strong> files, whose names carry information about the FW content itself. The name (at least of the latest releases) consists of a <em>GW code</em>, a suffix which identify the serial protocol, and a suffix which identifies the DPB HW version compatibility.</p>
+<p>The <strong>mcs</strong> file is intended to be uploaded into the non-volatile memory of the board, allowing a permanent programming of the FPGA at power up.</p>
+<h3 id="gw-code">GW Code<a class="headerlink" href="#gw-code" title="Permanent link">#</a></h3>
+<p>The so-called GW code of the Digitizer consists of a 16-bit hex word, which specifies HW and FW version of the file.</p>
+<p>Description : Package for HYPER-K GateWare (GW) versions
+Since GW version 7F, this is how the reg is managed:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">4 bit</th>
+<th style="text-align: center;">3 bit</th>
+<th style="text-align: center;">1 bit</th>
+<th style="text-align: center;">8 bit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">ID-HW</td>
+<td style="text-align: center;">OD-HW</td>
+<td style="text-align: center;">FMT</td>
+<td style="text-align: center;">GW VERSION</td>
+</tr>
+</tbody>
+</table>
+<p><em>ID-HW</em> and <em>OD-HW</em> codes represent the HW version of the resepctive HW boards.</p>
+<p><em>FMT</em> specifies the data format: it is <code>1</code> for the <em>subhit</em> FW, while it is <code>0</code> for older FW which does not implement the subhit acquisition.</p>
+<p>Finally, the <em>GW VERSION</em> states the version of the FW.</p>
+<h3 id="serial-protocol">Serial protocol<a class="headerlink" href="#serial-protocol" title="Permanent link">#</a></h3>
+<p>The suffix which indicates the Serial protocol between DPB and DIG can be <strong>GUI</strong> or <strong>PKT</strong>, according to GUI-like interface (interactive menus, string commands, etc.etc.), or PKT-like interface (ASCII protocol with packets, string commands, etc.).</p>
+<h3 id="dpb-hw-version">DPB HW version<a class="headerlink" href="#dpb-hw-version" title="Permanent link">#</a></h3>
+<p>DPBv3 is the only HW version which needs to be distinguished from the others, since there is an inversion of the aurora link on DIG1 link. The suffix specifies <strong>DPBv3</strong> when the FW is intended for HW version 3. If no suffix is present or if a specific HW version is in the file name, then this is the version for DPB versions other than v3.</p>
               
             </div>
           </div><footer>
