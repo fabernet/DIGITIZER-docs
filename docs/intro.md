@@ -4,7 +4,8 @@ This documentation explains the working principle of the Digitizer board, from t
 
 ## Choosing the FW
 
-FPGA FW is stored in __mcs__ files, whose names carry information about the FW content itself. The name (at least of the latest releases) consists of a _GW code_, a suffix which identify the serial protocol, and a suffix which identifies the DPB HW version compatibility.
+FPGA FW is stored in __mcs__ files, whose names carry information about the FW content itself. The name (at least of the latest releases) consists of a _GW code_, a suffix which identify the serial protocol, and a suffix which identifies the DPB HW version compatibility. Currently, the FW files are stored in a dedicated shared folder on [_CERNbox_](https://cernbox.cern.ch/files/spaces/eos/user/f/fameli/DIGITIZER-FW?items-per-page=100&files-spaces-generic-view-mode=resource-table&tiles-size=2).
+
 
 The __mcs__ file is intended to be uploaded into the non-volatile memory of the board, allowing a permanent programming of the FPGA at power up.
 
