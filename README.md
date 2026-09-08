@@ -1,6 +1,8 @@
 # How to generate documentation
 
-This documentation is being developed in MkDocs. The provider of the git repo hosting the documents is __github__, which can also host seamlessly a web static page with the documentation. The page can be found [here](https://fabernet.github.io/DIGITIZER-docs/).
+This documentation is being developed in MkDocs. The provider of the git repo hosting the documents is __github__, which can also host seamlessly a web static page with the documentation.
+
+The web page with the rendered documentation can be found [here](https://fabernet.github.io/DIGITIZER-docs/).
 
 In case it is desirable to render the documentation locally, do the following:
 
