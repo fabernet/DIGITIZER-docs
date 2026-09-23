@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Appendix - Dig-Docs</title>
+    <title>HKDIG Command Reference - Dig-Docs</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Appendix";
-        var mkdocs_page_input_path = "appendix.md";
+        var mkdocs_page_name = "HKDIG Command Reference";
+        var mkdocs_page_input_path = "hkdig_commands.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -81,54 +81,8 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">________</span></p>
-              <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Appendix</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#slow-control-protocols">Slow control protocols</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#dpb-slowcontrolapp">dpb-slowcontrolapp</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#digitizer-gui">Digitizer GUI</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#digitizer-copkt">Digitizer COPkt</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#1-front-end-fe-parameter-commands">1. Front-End (FE) / Parameter Commands</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#2-calibration-commands">2. Calibration Commands</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#3-channel-commands">3. Channel Commands</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#4-global-daq-commands">4. Global DAQ Commands</a>
-    </li>
-        </ul>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#5-data-transmission-commands">5. Data Transmission Commands</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#6-pedestal-commands">6. Pedestal Commands</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#7-od-commands">7. OD Commands</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#8-board-commands">8. Board Commands</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#9-eeprom-commands">9. EEPROM Commands</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#10-rate-monitor-commands">10. Rate Monitor Commands</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#11-monitoring-voltage-current-temperature-commands">11. Monitoring (Voltage / Current / Temperature) Commands</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#12-tb-testbench-register-commands">12. TB (Testbench) Register Commands</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#13-bme280-commands">13. BME280 Commands</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#14-miscellaneous-commands">14. Miscellaneous Commands</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#connecting-through-the-dpb">Connecting through the DPB</a>
-    </li>
-    </ul>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../appendix/">Appendix</a>
                   </li>
               </ul>
               <ul>
@@ -149,8 +103,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">________</li>
-      <li class="breadcrumb-item active">Appendix</li>
+      <li class="breadcrumb-item active">HKDIG Command Reference</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -159,27 +112,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="appendix">Appendix<a class="headerlink" href="#appendix" title="Permanent link">#</a></h1>
-<p>This paragraph is dedicated to detailed explanation of technical arguments.</p>
-<h2 id="slow-control-protocols">Slow control protocols<a class="headerlink" href="#slow-control-protocols" title="Permanent link">#</a></h2>
-<p>The slow control channel to communicate with the digitizer board is the serial port connecting it to the DPB. Natively, there are 2 possible communication protocols over this serial link: the so-called <code>GUI</code> and the <code>COPacket</code>.</p>
-<p>The <code>GUI</code> protocol was developed as a mean to communicate "visually" with the digitizer board. There is a menu implemented and commands can be issued sending ASCII codes through a terminal or an application. This protocol is not suitable to be implemented in a "machine readable" way, since there is no control over the character stream sent or returned by the digitizer. This is meant essentially for "human" interaction through a terminal, though a lot of effort has been done to use it also in Python scripts.</p>
-<p>The <code>COPacket</code>, on the contrary, though it is a very simple protocol, is thought to be "machine" friendly. It is an ASCII packet based protocol, with leading and trailing characters, commands and parameters well defined and of known length.</p>
-<h3 id="dpb-slowcontrolapp">dpb-slowcontrolapp<a class="headerlink" href="#dpb-slowcontrolapp" title="Permanent link">#</a></h3>
-<p>This is the target slow control procedure: the DPB implements a service, called <code>dpb-slowcontrolapp</code>, which manages the interface to the digitizer. Details of this implementation can be found <a href="https://gitlab.cern.ch/hk-dpb-team/hk_petalinux_project_dpb2_2022_2/-/blob/master/doc/dpb-slowcontrolapp-howto.md?ref_type=heads">here</a>.</p>
-<h3 id="digitizer-gui">Digitizer GUI<a class="headerlink" href="#digitizer-gui" title="Permanent link">#</a></h3>
-<p>The GUI protocol is intended for <em>human interaction friendly</em>, i.e. is designed to be used from a serial terminal in an interactive way. This makes it very confortable for debug and tests, but almost impossible to exchange commands efficiently with an application or a script.</p>
-<h3 id="digitizer-copkt">Digitizer COPkt<a class="headerlink" href="#digitizer-copkt" title="Permanent link">#</a></h3>
-<p>The protocol is based on packets of ASCII characters; each packet starts with the <code>$</code> leading character and is terminated by the <code>#</code> trailing character. The command follows immediately after the <code>$</code> character: it is a string which may or may not require one or more parameters. For example, a list of available commands is returned typing the <code>$help#</code> command.</p>
-<p>Available commands are shown hereafter, taken from the <em>COPacketCmdHkDig.cpp</em> file which implements the whole command set.</p>
-<p>This document describes the commands exposed by the <code>HkDigCommands</code> command table (<code>HkDigCmdSize = 102</code> entries, backed by the <code>HKDIG_CMD_LIST</code> enum). Each command consists of:</p>
+                <h1 id="hkdig-command-reference">HKDIG Command Reference<a class="headerlink" href="#hkdig-command-reference" title="Permanent link">#</a></h1>
+<p>This document describes the commands exposed by the <code>HkDigCommands</code> command table
+(<code>HkDigCmdSize = 102</code> entries, backed by the <code>HKDIG_CMD_LIST</code> enum). Each command
+consists of:</p>
 <ul>
 <li><strong>Command</strong> – the short ASCII mnemonic sent over the communication link</li>
 <li><strong>Enum</strong> – the corresponding <code>HKDIG_CMD_LIST</code> / <code>_COPacketCmdType</code> identifier</li>
 <li><strong>Arguments</strong> – parameters the command expects (parsed from the trailing <code>#</code>-terminated usage string)</li>
 <li><strong>Description</strong> – explanation of what the command does, from the enum's inline comments</li>
 </ul>
-<h4 id="1-front-end-fe-parameter-commands">1. Front-End (FE) / Parameter Commands<a class="headerlink" href="#1-front-end-fe-parameter-commands" title="Permanent link">#</a></h4>
+<hr />
+<h2 id="1-front-end-fe-parameter-commands">1. Front-End (FE) / Parameter Commands<a class="headerlink" href="#1-front-end-fe-parameter-commands" title="Permanent link">#</a></h2>
 <p>Get/set per-channel or all-channel thresholds, integration time, and dead time.</p>
 <table>
 <thead>
@@ -247,7 +191,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="2-calibration-commands">2. Calibration Commands<a class="headerlink" href="#2-calibration-commands" title="Permanent link">#</a></h4>
+<h2 id="2-calibration-commands">2. Calibration Commands<a class="headerlink" href="#2-calibration-commands" title="Permanent link">#</a></h2>
 <p>Configure the calibration board (CAL-Board) and its pulse generator.</p>
 <table>
 <thead>
@@ -327,7 +271,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="3-channel-commands">3. Channel Commands<a class="headerlink" href="#3-channel-commands" title="Permanent link">#</a></h4>
+<h2 id="3-channel-commands">3. Channel Commands<a class="headerlink" href="#3-channel-commands" title="Permanent link">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -406,7 +350,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="4-global-daq-commands">4. Global DAQ Commands<a class="headerlink" href="#4-global-daq-commands" title="Permanent link">#</a></h4>
+<h2 id="4-global-daq-commands">4. Global DAQ Commands<a class="headerlink" href="#4-global-daq-commands" title="Permanent link">#</a></h2>
 <p>Commands that act on all channels at once.</p>
 <table>
 <thead>
@@ -469,7 +413,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="6-pedestal-commands">6. Pedestal Commands<a class="headerlink" href="#6-pedestal-commands" title="Permanent link">#</a></h4>
+<h2 id="6-pedestal-commands">6. Pedestal Commands<a class="headerlink" href="#6-pedestal-commands" title="Permanent link">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -518,7 +462,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="7-od-commands">7. OD Commands<a class="headerlink" href="#7-od-commands" title="Permanent link">#</a></h4>
+<h2 id="7-od-commands">7. OD Commands<a class="headerlink" href="#7-od-commands" title="Permanent link">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -543,7 +487,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="8-board-commands">8. Board Commands<a class="headerlink" href="#8-board-commands" title="Permanent link">#</a></h4>
+<h2 id="8-board-commands">8. Board Commands<a class="headerlink" href="#8-board-commands" title="Permanent link">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -628,7 +572,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="9-eeprom-commands">9. EEPROM Commands<a class="headerlink" href="#9-eeprom-commands" title="Permanent link">#</a></h4>
+<h2 id="9-eeprom-commands">9. EEPROM Commands<a class="headerlink" href="#9-eeprom-commands" title="Permanent link">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -653,7 +597,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="10-rate-monitor-commands">10. Rate Monitor Commands<a class="headerlink" href="#10-rate-monitor-commands" title="Permanent link">#</a></h4>
+<h2 id="10-rate-monitor-commands">10. Rate Monitor Commands<a class="headerlink" href="#10-rate-monitor-commands" title="Permanent link">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -726,7 +670,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="11-monitoring-voltage-current-temperature-commands">11. Monitoring (Voltage / Current / Temperature) Commands<a class="headerlink" href="#11-monitoring-voltage-current-temperature-commands" title="Permanent link">#</a></h4>
+<h2 id="11-monitoring-voltage-current-temperature-commands">11. Monitoring (Voltage / Current / Temperature) Commands<a class="headerlink" href="#11-monitoring-voltage-current-temperature-commands" title="Permanent link">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -883,7 +827,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="12-tb-testbench-register-commands">12. TB (Testbench) Register Commands<a class="headerlink" href="#12-tb-testbench-register-commands" title="Permanent link">#</a></h4>
+<h2 id="12-tb-testbench-register-commands">12. TB (Testbench) Register Commands<a class="headerlink" href="#12-tb-testbench-register-commands" title="Permanent link">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -914,7 +858,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="13-bme280-commands">13. BME280 Commands<a class="headerlink" href="#13-bme280-commands" title="Permanent link">#</a></h4>
+<h2 id="13-bme280-commands">13. BME280 Commands<a class="headerlink" href="#13-bme280-commands" title="Permanent link">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -951,7 +895,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="14-miscellaneous-commands">14. Miscellaneous Commands<a class="headerlink" href="#14-miscellaneous-commands" title="Permanent link">#</a></h4>
+<h2 id="14-miscellaneous-commands">14. Miscellaneous Commands<a class="headerlink" href="#14-miscellaneous-commands" title="Permanent link">#</a></h2>
 <table>
 <thead>
 <tr>
@@ -976,28 +920,15 @@
 </tr>
 </tbody>
 </table>
-<h2 id="connecting-through-the-dpb">Connecting through the DPB<a class="headerlink" href="#connecting-through-the-dpb" title="Permanent link">#</a></h2>
-<p>The Digitizer communicates through a serial port: when it is connected to the DPB, the communication can be routed by the DPB.</p>
-<p>After logging in the DPB with <em>ssh</em>, move to the script folder and activate socat for both Digitizers:</p>
-<pre><code>$ bash run-socat.sh 1 dpb-dig0-port
-$ bash run-socat.sh 2 dpb-dig1-port
-</code></pre>
-<p>Since the OS instantiates the serial ports for the 2 Digitizers as <code>/dev/ttyUL1</code> and <code>/dev/ttyUL2</code>, the index <code>1</code> and <code>2</code> in the <code>run-socat.sh</code> command are fixed. Tipically, we choose <code>9001</code> as the dpb-dig-port for Digitizer 0, and <code>9002</code> for Digitizer 1.</p>
-<p>On the Host, clone the  <strong>DiscreteSoftware</strong> repo and, in the <code>docs</code> folder, run the vcom.sh script:</p>
-<pre><code>bash vcom.sh 0 dpb-ip-address dpb-dig-port
-</code></pre>
-<p>The <code>vcom.sh</code> script instantiates a serial port in the directory <code>install</code> of the repo. To test the <em>socat tunnelling</em>, use a serial communication program like <code>microcom</code> or <code>minicom</code>:</p>
-<pre><code>$ microcom -p &lt;repo-path&gt;/install/vmodem0
-</code></pre>
-<p>The python scripts of the <strong>DiscreteSoftware</strong> repo are now able to communicate to the Digitizer using this <em>tunnel</em> serial port.</p>
-<p>For more detailed information, read the documentation in the folder <code>docs</code> inside the <strong>DiscreteSoftware</strong> repo.</p>
+<hr />
+<h2 id="revision-notes">Revision Notes<a class="headerlink" href="#revision-notes" title="Permanent link">#</a></h2>
+<ul>
+<li>Total commands documented: 102</li>
+<li>Source: <code>HkDigCommands[HkDigCmdSize]</code> command table + <code>HKDIG_CMD_LIST</code> enum (<code>_COPacketCmdType</code>)</li>
+</ul>
               
             </div>
           </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../daq/timing/" class="btn btn-neutral float-left" title="Timing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../about/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
-    </div>
 
   <hr/>
 
@@ -1019,10 +950,6 @@ $ bash run-socat.sh 2 dpb-dig1-port
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../daq/timing/" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../about/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
