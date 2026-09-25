@@ -1,16 +1,20 @@
 # Digitizer Slow control protocols
 
-The slow control channel to communicate with the digitizer board is the serial port connecting it to the DPB. Natively, there are 2 possible communication protocols over this serial link: the so-called `GUI` and the `COPacket`.
+The slow control channel to communicate with the digitizer board is the serial connected to the DPB. Natively, there are 2 possible communication protocols over this serial link: the so-called `GUI` and the `COPacket`.
 
-The `GUI` protocol was developed as a mean to communicate "visually" with the digitizer board. There is a menu implemented and commands can be issued sending ASCII codes through a terminal or an application. This protocol is not suitable to be implemented in a "machine readable" way, since there is no control over the character stream sent or returned by the digitizer. This is meant essentially for "human" interaction through a terminal, though a lot of effort has been done to use it also in Python scripts.
+The `GUI` protocol was developed as a mean to communicate "interactively" with the digitizer board. There is a menu implemented and commands can be issued sending ASCII codes through a terminal or an application. This protocol is not suitable to be implemented in a "machine readable" way, since there is no control over the character stream sent or returned by the digitizer. This is meant essentially for "human" interaction through a terminal, though a lot of effort has been done to use it also in Python scripts. The main drawback is the lack of a packet format which helps designing an efficient code to exchange data.
 
-The `COPacket`, on the contrary, though it is a very simple protocol, is thought to be "machine" friendly. It is an ASCII packet based protocol, with leading and trailing characters, commands and parameters well defined and of known length.
+The `COPacket`, on the contrary, though it is a very simple protocol, is thought to be "machine" friendly. It is an ASCII packet based protocol, with leading and trailing characters delimiting a variable sized packet, well defined commands and parameters. This will be the target protocol.
+
+Even though both are mantained (in some cases, for debug purposes, some commands could have been implemented only in one protocol), it is recommended to use the COPacket protocol.
 
 ## Digitizer GUI Serial protocol
 
 The GUI protocol is intended for _human interaction friendly_, i.e. is designed to be used from a serial terminal in an interactive way. This makes it very confortable for debug and tests, but almost impossible to exchange commands efficiently with an application or a script.
 
-## Digitizer COPkt Serial protocol
+For example, pressing character `m` will show the menu-like prompt, which is slightly self-explaining.
+
+## Digitizer COPacket Serial protocol
 
 The protocol is based on packets of ASCII characters; each packet starts with the `$` leading character and is terminated by the `#` trailing character. The command follows immediately after the `$` character: it is a string which may or may not require one or more parameters. For example, a list of available commands is returned typing the `$help#` command.
 
