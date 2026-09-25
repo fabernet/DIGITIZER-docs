@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>dpb-slowcontrolapp - Dig-Docs</title>
+    <title>DPB slow control service - Dig-Docs</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "dpb-slowcontrolapp";
-        var mkdocs_page_input_path = "appendix/dpb-slowcontrolapp.md";
+        var mkdocs_page_name = "DPB slow control service";
+        var mkdocs_page_input_path = "appendix/dpb-slowcontrol-service.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -80,18 +80,18 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../daq/timing/">Timing</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">________</span></p>
+              <p class="caption"><span class="caption-text">Appendix</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" >Appendix</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../dig-dpb-bridge/">DIG-DPB serial bridge</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dig-protocols/">DIG protocols</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">DPB slow control service</a>
     <ul class="current">
-                <li class="toctree-l2"><a class="reference internal" href="../appendix/">Appendix Intro</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../dig-protocols/">COPacket</a>
-                </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="#">dpb-slowcontrolapp</a>
-    <ul class="current">
-    </ul>
-                </li>
+    <li class="toctree-l2"><a class="reference internal" href="#set-commands-map">SET commands map</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#read-commands-map">READ commands map</a>
+    </li>
     </ul>
                   </li>
               </ul>
@@ -113,9 +113,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">________</li>
           <li class="breadcrumb-item">Appendix</li>
-      <li class="breadcrumb-item active">dpb-slowcontrolapp</li>
+      <li class="breadcrumb-item active">DPB slow control service</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -126,9 +125,9 @@
               
                 <h1 id="linux-dpb-slowcontrolapp-service">Linux dpb-slowcontrolapp service<a class="headerlink" href="#linux-dpb-slowcontrolapp-service" title="Permanent link">#</a></h1>
 <p>This is the target slow control communication path with the Digitizer; it is implemented by the DPB with a service, called <code>dpb-slowcontrolapp</code>, which manages the interface to the digitizer. Details of this implementation can be found <a href="https://gitlab.cern.ch/hk-dpb-team/hk_petalinux_project_dpb2_2022_2/-/blob/master/doc/dpb-slowcontrolapp-howto.md?ref_type=heads">here</a>.</p>
-<p>The commands are exposed by a Linux service implemented in the DPB board that sits on top of the protocol
-above (<code>DIG0</code> / <code>DIG1</code>). Each service command maps to one or more <code>HKDIG_*</code> write commands from the tables above.</p>
-<p><code>dpb-slowcontrolapp</code> commands consist if a <code>READ/SET</code> command, followed by Digitizer selection <code>DIG0/DIG1</code> and then by the <em>Service command</em> shown hereafter. The following table maps the write commands of the two protocols:</p>
+<p><code>dpb-slowcontrolapp</code> commands consist if a <code>READ/SET</code> command, followed by Digitizer selection <code>DIG0/DIG1</code> and then by the <em>Service command</em> shown hereafter. Each service command maps to one or more <code>HKDIG_*</code> commands (see "Digitizer slow control protocols" section in the Appendix).</p>
+<h2 id="set-commands-map">SET commands map<a class="headerlink" href="#set-commands-map" title="Permanent link">#</a></h2>
+<p>The following table maps the write commands of the two protocols:</p>
 <table>
 <thead>
 <tr>
@@ -160,6 +159,34 @@ above (<code>DIG0</code> / <code>DIG1</code>). Each service command maps to one 
 <td><code>INTTIME</code></td>
 <td>0–17, ALL</td>
 <td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_DT_NUM</code> / <code>HKDIG_SET_DT_ALL</code></td>
+<td><code>sdtn</code> / <code>sdta</code></td>
+<td><code>DEADTIME</code></td>
+<td>0–17, ALL</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_START_FE_N</code> / <code>HKDIG_STOP_FE_N</code> (+ <code>_ALL</code>)</td>
+<td><code>efen</code> / <code>dfen</code> (+ <code>efea</code> / <code>dfea</code>)</td>
+<td><code>FESTATUS</code></td>
+<td>0–17, ALL</td>
+<td>ON/OFF</td>
+</tr>
+<tr>
+<td><code>HKDIG_START_DAQ_N</code> / <code>HKDIG_STOP_DAQ_N</code> (+ <code>_ALL</code>)</td>
+<td><code>edqn</code> / <code>ddqn</code> (+ <code>edqa</code> / <code>ddqa</code>)</td>
+<td><code>DAQSTATUS</code></td>
+<td>0–17, ALL</td>
+<td>ON/OFF</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
 </tr>
 <tr>
 <td><code>HKDIG_SET_CAL_N</code></td>
@@ -232,6 +259,69 @@ above (<code>DIG0</code> / <code>DIG1</code>). Each service command maps to one 
 <td>number</td>
 </tr>
 <tr>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_PED_PERIOD</code></td>
+<td><code>spedp</code></td>
+<td><code>PEDPERIOD</code></td>
+<td>–</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_PED_ENABLE</code></td>
+<td><code>spedn</code></td>
+<td><code>PEDTYPE</code></td>
+<td>0–17</td>
+<td>0–1</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_PED_STAGGER</code></td>
+<td><code>speds</code></td>
+<td><code>PEDSTAG</code></td>
+<td>–</td>
+<td>number</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_RMON_PER</code></td>
+<td><code>srmp</code></td>
+<td><code>RMONT</code></td>
+<td>–</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_RUN_RMON</code></td>
+<td><code>runr</code></td>
+<td><code>RMONRUN</code></td>
+<td>–</td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_RUN_RMON_EN</code> / <code>HKDIG_RUN_RMON_DIS</code></td>
+<td><code>rmne</code> / <code>rmnd</code></td>
+<td><code>RMON</code></td>
+<td>–</td>
+<td>ON/OFF</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
 <td><code>HKDIG_SET_AUR_DEMUX</code></td>
 <td><code>sdmx</code></td>
 <td><code>DEMUX</code></td>
@@ -260,46 +350,11 @@ above (<code>DIG0</code> / <code>DIG1</code>). Each service command maps to one 
 <td>number</td>
 </tr>
 <tr>
-<td><code>HKDIG_START_FE_N</code> / <code>HKDIG_STOP_FE_N</code> (+ <code>_ALL</code>)</td>
-<td><code>efen</code> / <code>dfen</code> (+ <code>efea</code> / <code>dfea</code>)</td>
-<td><code>FESTATUS</code></td>
-<td>0–17, ALL</td>
-<td>ON/OFF</td>
-</tr>
-<tr>
-<td><code>HKDIG_START_DAQ_N</code> / <code>HKDIG_STOP_DAQ_N</code> (+ <code>_ALL</code>)</td>
-<td><code>edqn</code> / <code>ddqn</code> (+ <code>edqa</code> / <code>ddqa</code>)</td>
-<td><code>DAQSTATUS</code></td>
-<td>0–17, ALL</td>
-<td>ON/OFF</td>
-</tr>
-<tr>
 <td><code>HKDIG_TDC_RST</code></td>
 <td><code>tdcr</code></td>
 <td><code>TDCRST</code></td>
 <td>–</td>
 <td>–</td>
-</tr>
-<tr>
-<td><code>HKDIG_SET_PED_PERIOD</code></td>
-<td><code>spedp</code></td>
-<td><code>PEDPERIOD</code></td>
-<td>–</td>
-<td>number</td>
-</tr>
-<tr>
-<td><code>HKDIG_SET_PED_ENABLE</code></td>
-<td><code>spedn</code></td>
-<td><code>PEDTYPE</code></td>
-<td>0–17</td>
-<td>0–1</td>
-</tr>
-<tr>
-<td><code>HKDIG_SET_PED_STAGGER</code></td>
-<td><code>speds</code></td>
-<td><code>PEDSTAG</code></td>
-<td>–</td>
-<td>number</td>
 </tr>
 <tr>
 <td><code>HKDIG_RST_AURORA_LINK</code></td>
@@ -316,27 +371,6 @@ above (<code>DIG0</code> / <code>DIG1</code>). Each service command maps to one 
 <td>LOCAL/DPB</td>
 </tr>
 <tr>
-<td><code>HKDIG_SET_RMON_PER</code></td>
-<td><code>srmp</code></td>
-<td><code>RMONT</code></td>
-<td>–</td>
-<td>number</td>
-</tr>
-<tr>
-<td><code>HKDIG_RUN_RMON</code></td>
-<td><code>runr</code></td>
-<td><code>RMONRUN</code></td>
-<td>–</td>
-<td>–</td>
-</tr>
-<tr>
-<td><code>HKDIG_RUN_RMON_EN</code> / <code>HKDIG_RUN_RMON_DIS</code></td>
-<td><code>rmne</code> / <code>rmnd</code></td>
-<td><code>RMON</code></td>
-<td>–</td>
-<td>ON/OFF</td>
-</tr>
-<tr>
 <td><code>HKDIG_SET_5V0A</code></td>
 <td><code>s5v0a</code></td>
 <td><code>5V0A</code></td>
@@ -350,13 +384,6 @@ above (<code>DIG0</code> / <code>DIG1</code>). Each service command maps to one 
 <td>–</td>
 <td>number</td>
 </tr>
-<tr>
-<td><code>HKDIG_SET_DT_NUM</code> / <code>HKDIG_SET_DT_ALL</code></td>
-<td><code>sdtn</code> / <code>sdta</code></td>
-<td><code>DEADTIME</code></td>
-<td>0–17, ALL</td>
-<td>number</td>
-</tr>
 </tbody>
 </table>
 <blockquote>
@@ -365,6 +392,7 @@ the <strong>channel control register</strong> (<code>HKDIG_SET_CHN_CNTRL</code>)
 register. See <code>STATUS</code> (read) below, which does read the actual status
 register.</p>
 </blockquote>
+<h2 id="read-commands-map">READ commands map<a class="headerlink" href="#read-commands-map" title="Permanent link">#</a></h2>
 <p>The following table maps the read commands of the two protocols:</p>
 <table>
 <thead>
@@ -377,6 +405,24 @@ register.</p>
 </thead>
 <tbody>
 <tr>
+<td><code>HKDIG_GET_HW_VER</code></td>
+<td><code>ghwv</code></td>
+<td><code>HWVER</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_GW_VER</code></td>
+<td><code>ggwv</code></td>
+<td><code>GWVER</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_SW_VER</code></td>
+<td><code>gswv</code></td>
+<td><code>SWVER</code></td>
+<td>–</td>
+</tr>
+<tr>
 <td><code>HKDIG_GET_CHN_STATUS</code></td>
 <td><code>gchs</code></td>
 <td><code>STATUS</code></td>
@@ -386,6 +432,24 @@ register.</p>
 <td><code>HKDIG_GET_CHN_CNTRL</code></td>
 <td><code>gchc</code></td>
 <td><code>CHCONTROL</code></td>
+<td>0–17</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_THR_NUM</code></td>
+<td><code>gthn</code></td>
+<td><code>DISCTRES</code></td>
+<td>0–17</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_IT_NUM</code></td>
+<td><code>gitn</code></td>
+<td><code>INTTIME</code></td>
+<td>0–17</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_DT_NUM</code></td>
+<td><code>gdtn</code></td>
+<td><code>DEADTIME</code></td>
 <td>0–17</td>
 </tr>
 <tr>
@@ -425,24 +489,6 @@ register.</p>
 <td>0–17</td>
 </tr>
 <tr>
-<td><code>HKDIG_GET_HW_VER</code></td>
-<td><code>ghwv</code></td>
-<td><code>HWVER</code></td>
-<td>–</td>
-</tr>
-<tr>
-<td><code>HKDIG_GET_GW_VER</code></td>
-<td><code>ggwv</code></td>
-<td><code>GWVER</code></td>
-<td>–</td>
-</tr>
-<tr>
-<td><code>HKDIG_GET_SW_VER</code></td>
-<td><code>gswv</code></td>
-<td><code>SWVER</code></td>
-<td>–</td>
-</tr>
-<tr>
 <td><code>HKDIG_GET_BOARD_STATUS</code></td>
 <td><code>gbds</code></td>
 <td><code>BDSTATUS</code></td>
@@ -452,24 +498,6 @@ register.</p>
 <td><code>HKDIG_GET_BOARD_CNTRL</code></td>
 <td><code>gbdc</code></td>
 <td><code>BDCONTROL</code></td>
-<td>–</td>
-</tr>
-<tr>
-<td><code>HKDIG_GET_UPTIME</code></td>
-<td><code>gupt</code></td>
-<td><code>UPTIME</code></td>
-<td>–</td>
-</tr>
-<tr>
-<td><code>HKDIG_GET_CLOCK</code></td>
-<td><code>gclk</code></td>
-<td><code>DAQCLOCK</code></td>
-<td>–</td>
-</tr>
-<tr>
-<td><code>HKDIG_GET_TLNK_LOCK</code></td>
-<td><code>gtlck</code></td>
-<td><code>TLNLOCK</code></td>
 <td>–</td>
 </tr>
 <tr>
@@ -483,6 +511,12 @@ register.</p>
 <td><code>geid</code></td>
 <td><code>EID</code></td>
 <td>–</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
 </tr>
 <tr>
 <td><code>HKDIG_GET_RMON_ADC_N</code></td>
@@ -519,6 +553,12 @@ register.</p>
 <td><code>grmp</code></td>
 <td><code>RMONT</code></td>
 <td>–</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
 </tr>
 <tr>
 <td><code>HKDIG_GET_BOARD_3V3A</code></td>
@@ -581,12 +621,6 @@ register.</p>
 <td>–</td>
 </tr>
 <tr>
-<td><code>HKDIG_GET_TB_REG</code></td>
-<td><code>gtbr</code></td>
-<td><code>TBREG</code></td>
-<td>–</td>
-</tr>
-<tr>
 <td><code>HKDIG_GET_BOARD_TFE</code></td>
 <td><code>gtfe</code></td>
 <td><code>TFE</code></td>
@@ -627,24 +661,6 @@ register.</p>
 <td><code>gbme</code></td>
 <td><code>TEMP</code>, <code>RELHUM</code>, <code>PRESS</code></td>
 <td>–</td>
-</tr>
-<tr>
-<td><code>HKDIG_GET_THR_NUM</code></td>
-<td><code>gthn</code></td>
-<td><code>DISCTRES</code></td>
-<td>0–17</td>
-</tr>
-<tr>
-<td><code>HKDIG_GET_IT_NUM</code></td>
-<td><code>gitn</code></td>
-<td><code>INTTIME</code></td>
-<td>0–17</td>
-</tr>
-<tr>
-<td><code>HKDIG_GET_DT_NUM</code></td>
-<td><code>gdtn</code></td>
-<td><code>DEADTIME</code></td>
-<td>0–17</td>
 </tr>
 <tr>
 <td><code>HKDIG_RO_FMON_N</code></td>
@@ -689,6 +705,30 @@ register.</p>
 <td>–</td>
 </tr>
 <tr>
+<td><code>HKDIG_GET_UPTIME</code></td>
+<td><code>gupt</code></td>
+<td><code>UPTIME</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_CLOCK</code></td>
+<td><code>gclk</code></td>
+<td><code>DAQCLOCK</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_TLNK_LOCK</code></td>
+<td><code>gtlck</code></td>
+<td><code>TLNLOCK</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_TB_REG</code></td>
+<td><code>gtbr</code></td>
+<td><code>TBREG</code></td>
+<td>–</td>
+</tr>
+<tr>
 <td><code>HKDIG_GET_TB_ST</code></td>
 <td><code>gtbs</code></td>
 <td><code>TBST</code></td>
@@ -706,7 +746,7 @@ decoding the returned values in the proper way.</p>
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../dig-protocols/" class="btn btn-neutral float-left" title="COPacket"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../dig-protocols/" class="btn btn-neutral float-left" title="DIG protocols"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../../about/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 

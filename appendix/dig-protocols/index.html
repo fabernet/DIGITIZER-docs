@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>COPacket - Dig-Docs</title>
+    <title>DIG protocols - Dig-Docs</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "COPacket";
+        var mkdocs_page_name = "DIG protocols";
         var mkdocs_page_input_path = "appendix/dig-protocols.md";
         var mkdocs_page_url = null;
       </script>
@@ -80,53 +80,49 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../daq/timing/">Timing</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">________</span></p>
+              <p class="caption"><span class="caption-text">Appendix</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" >Appendix</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../dig-dpb-bridge/">DIG-DPB serial bridge</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">DIG protocols</a>
     <ul class="current">
-                <li class="toctree-l2"><a class="reference internal" href="../appendix/">Appendix Intro</a>
-                </li>
-                <li class="toctree-l2 current"><a class="reference internal current" href="#">COPacket</a>
-    <ul class="current">
-    <li class="toctree-l3"><a class="reference internal" href="#digitizer-gui-serial-protocol">Digitizer GUI Serial protocol</a>
+    <li class="toctree-l2"><a class="reference internal" href="#digitizer-gui-serial-protocol">Digitizer GUI Serial protocol</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#digitizer-copkt-serial-protocol">Digitizer COPkt Serial protocol</a>
+    <li class="toctree-l2"><a class="reference internal" href="#digitizer-copkt-serial-protocol">Digitizer COPkt Serial protocol</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#1-front-end-fe-parameter-commands">1. Front-End (FE) / Parameter Commands</a>
+    <li class="toctree-l3"><a class="reference internal" href="#1-front-end-fe-parameter-commands">1. Front-End (FE) / Parameter Commands</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#2-calibration-commands">2. Calibration Commands</a>
+    <li class="toctree-l3"><a class="reference internal" href="#2-calibration-commands">2. Calibration Commands</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#3-channel-commands">3. Channel Commands</a>
+    <li class="toctree-l3"><a class="reference internal" href="#3-channel-commands">3. Channel Commands</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#4-global-daq-commands">4. Global DAQ Commands</a>
+    <li class="toctree-l3"><a class="reference internal" href="#4-global-daq-commands">4. Global DAQ Commands</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#5-data-transmission-commands">5. Data Transmission Commands</a>
+    <li class="toctree-l3"><a class="reference internal" href="#5-data-transmission-commands">5. Data Transmission Commands</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#6-pedestal-commands">6. Pedestal Commands</a>
+    <li class="toctree-l3"><a class="reference internal" href="#6-pedestal-commands">6. Pedestal Commands</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#7-od-commands">7. OD Commands</a>
+    <li class="toctree-l3"><a class="reference internal" href="#7-od-commands">7. OD Commands</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#8-board-commands">8. Board Commands</a>
+    <li class="toctree-l3"><a class="reference internal" href="#8-board-commands">8. Board Commands</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#9-eeprom-commands">9. EEPROM Commands</a>
+    <li class="toctree-l3"><a class="reference internal" href="#9-eeprom-commands">9. EEPROM Commands</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#10-rate-monitor-commands">10. Rate Monitor Commands</a>
+    <li class="toctree-l3"><a class="reference internal" href="#10-rate-monitor-commands">10. Rate Monitor Commands</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#11-monitoring-voltage-current-temperature-commands">11. Monitoring (Voltage / Current / Temperature) Commands</a>
+    <li class="toctree-l3"><a class="reference internal" href="#11-monitoring-voltage-current-temperature-commands">11. Monitoring (Voltage / Current / Temperature) Commands</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#12-tb-testbench-register-commands">12. TB (Testbench) Register Commands</a>
+    <li class="toctree-l3"><a class="reference internal" href="#12-tb-testbench-register-commands">12. TB (Testbench) Register Commands</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#13-bme280-commands">13. BME280 Commands</a>
+    <li class="toctree-l3"><a class="reference internal" href="#13-bme280-commands">13. BME280 Commands</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#14-miscellaneous-commands">14. Miscellaneous Commands</a>
+    <li class="toctree-l3"><a class="reference internal" href="#14-miscellaneous-commands">14. Miscellaneous Commands</a>
     </li>
         </ul>
     </li>
     </ul>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../dpb-slowcontrolapp/">dpb-slowcontrolapp</a>
-                </li>
-    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dpb-slowcontrol-service/">DPB slow control service</a>
                   </li>
               </ul>
               <ul>
@@ -147,9 +143,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">________</li>
           <li class="breadcrumb-item">Appendix</li>
-      <li class="breadcrumb-item active">COPacket</li>
+      <li class="breadcrumb-item active">DIG protocols</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -975,8 +970,8 @@
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../appendix/" class="btn btn-neutral float-left" title="Appendix Intro"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../dpb-slowcontrolapp/" class="btn btn-neutral float-right" title="dpb-slowcontrolapp">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../dig-dpb-bridge/" class="btn btn-neutral float-left" title="DIG-DPB serial bridge"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../dpb-slowcontrol-service/" class="btn btn-neutral float-right" title="DPB slow control service">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -999,10 +994,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../appendix/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../dig-dpb-bridge/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../dpb-slowcontrolapp/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../dpb-slowcontrol-service/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
