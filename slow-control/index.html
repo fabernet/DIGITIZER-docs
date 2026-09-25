@@ -55,11 +55,11 @@
               </ul>
               <p class="caption"><span class="caption-text">COMM&Sensors</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../leds/">LEDs</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../control/leds/">LEDs</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../sensors/">Sensors</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../control/sensors/">Sensors</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../onboard-peripherals/">Peripherals</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../control/onboard-peripherals/">Peripherals</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Setup</span></p>
@@ -84,7 +84,15 @@
               </ul>
               <p class="caption"><span class="caption-text">________</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../appendix/">Appendix</a>
+                  <li class="toctree-l1"><a class="reference internal" >Appendix</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../appendix/appendix/">Appendix Intro</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../appendix/dig-protocols/">COPacket</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../appendix/dpb-slowcontrolapp/">dpb-slowcontrolapp</a>
+                </li>
+    </ul>
                   </li>
               </ul>
               <ul>
@@ -125,12 +133,13 @@
 <li>$ systemctl restart dpb-slowcontrolapp</li>
 </ul>
 <p>Details of this implementation can be found in the <a href="https://gitlab.cern.ch/hk-dpb-team/hk_petalinux_project_dpb2_2022_2/-/blob/master/doc/dpb-slowcontrolapp-howto.md?ref_type=heads">Petalinux repo documentation page</a>.</p>
+<p>In the Appendix section, the Digitizer serial protocol and the DPB GbE protocol are described in detail. A table remaps commands from a protocol to the other, when possible.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../intro/" class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../leds/" class="btn btn-neutral float-right" title="LEDs">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../control/leds/" class="btn btn-neutral float-right" title="LEDs">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -156,7 +165,7 @@
       <span><a href="../intro/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../leds/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../control/leds/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

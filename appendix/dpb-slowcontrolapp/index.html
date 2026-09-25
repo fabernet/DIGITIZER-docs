@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>dpb-slowcontrolapp - Dig-Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "dpb-slowcontrolapp";
+        var mkdocs_page_input_path = "appendix/dpb-slowcontrolapp.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Dig-Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../intro/">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../slow-control/">Slow Control</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">COMM&Sensors</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../control/leds/">LEDs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../control/sensors/">Sensors</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../control/onboard-peripherals/">Peripherals</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Setup</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../setup/parameters/">DAQ Parameters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../setup/pedestal/">Pedestal</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../setup/calibrator/">Calibrator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../setup/hw-setup/">HW setup</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DAQ</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../daq/data-format/">Data Format</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../daq/board-control/">Settings</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../daq/timing/">Timing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">________</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" >Appendix</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../appendix/">Appendix Intro</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../dig-protocols/">COPacket</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">dpb-slowcontrolapp</a>
+    <ul class="current">
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../about/">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Dig-Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">________</li>
+          <li class="breadcrumb-item">Appendix</li>
+      <li class="breadcrumb-item active">dpb-slowcontrolapp</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="linux-dpb-slowcontrolapp-service">Linux dpb-slowcontrolapp service<a class="headerlink" href="#linux-dpb-slowcontrolapp-service" title="Permanent link">#</a></h1>
+<p>This is the target slow control communication path with the Digitizer; it is implemented by the DPB with a service, called <code>dpb-slowcontrolapp</code>, which manages the interface to the digitizer. Details of this implementation can be found <a href="https://gitlab.cern.ch/hk-dpb-team/hk_petalinux_project_dpb2_2022_2/-/blob/master/doc/dpb-slowcontrolapp-howto.md?ref_type=heads">here</a>.</p>
+<p>The commands are exposed by a Linux service implemented in the DPB board that sits on top of the protocol
+above (<code>DIG0</code> / <code>DIG1</code>). Each service command maps to one or more <code>HKDIG_*</code> write commands from the tables above.</p>
+<p><code>dpb-slowcontrolapp</code> commands consist if a <code>READ/SET</code> command, followed by Digitizer selection <code>DIG0/DIG1</code> and then by the <em>Service command</em> shown hereafter. The following table maps the write commands of the two protocols:</p>
+<table>
+<thead>
+<tr>
+<th>HKDIG Enum</th>
+<th>Mnemonic</th>
+<th>Service Command</th>
+<th>Channels / Range</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HKDIG_SET_CHN_CNTRL</code></td>
+<td><code>schc</code></td>
+<td><code>STATUS</code></td>
+<td>0–17</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_THR_NUM</code> / <code>HKDIG_SET_THR_ALL</code></td>
+<td><code>sthn</code> / <code>stha</code></td>
+<td><code>DISCTRES</code></td>
+<td>0–17, ALL</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_IT_NUM</code> / <code>HKDIG_SET_IT_ALL</code></td>
+<td><code>sitn</code> / <code>sita</code></td>
+<td><code>INTTIME</code></td>
+<td>0–17, ALL</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_CAL_N</code></td>
+<td><code>scale</code></td>
+<td><code>CALIBEN</code></td>
+<td>0–17</td>
+<td>ON/OFF</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_CAL_TYPE</code></td>
+<td><code>scalm</code></td>
+<td><code>CALIBTYPE</code></td>
+<td>–</td>
+<td>0–3</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_CAL_PERIOD</code></td>
+<td><code>scalt</code></td>
+<td><code>CALIBPER</code></td>
+<td>–</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_CAL_GAIN</code></td>
+<td><code>scalg</code></td>
+<td><code>CALIBGAIN</code></td>
+<td>–</td>
+<td>LOW/HIGH</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_CAL_POWER</code></td>
+<td><code>scalp</code></td>
+<td><code>CALIBPWR</code></td>
+<td>–</td>
+<td>0–1</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_CAL_PLS_LEN</code></td>
+<td><code>scall</code></td>
+<td><code>CALIBLEN</code></td>
+<td>–</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_CAL_PLS_AMP</code></td>
+<td><code>scala</code></td>
+<td><code>CALIBAMP</code></td>
+<td>–</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_CAL_NPDN</code></td>
+<td><code>scaltp</code></td>
+<td><code>CALIBPDN</code></td>
+<td>–</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_CAL_MUTE</code></td>
+<td><code>scaltm</code></td>
+<td><code>CALIBMUTE</code></td>
+<td>–</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_CAL_PLSEN</code></td>
+<td><code>scalte</code></td>
+<td><code>CALIBSEN</code></td>
+<td>–</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_AUR_DEMUX</code></td>
+<td><code>sdmx</code></td>
+<td><code>DEMUX</code></td>
+<td>–</td>
+<td>ON/OFF</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_TB_REG</code></td>
+<td><code>stbr</code></td>
+<td><code>TBREG</code></td>
+<td>–</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_OD_SEL_REG</code></td>
+<td><code>sodsel</code></td>
+<td><code>ODSEL</code></td>
+<td>0–5</td>
+<td>0–1</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_ADS_PSC</code></td>
+<td><code>spsc</code></td>
+<td><code>PSC</code></td>
+<td>12–17</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_START_FE_N</code> / <code>HKDIG_STOP_FE_N</code> (+ <code>_ALL</code>)</td>
+<td><code>efen</code> / <code>dfen</code> (+ <code>efea</code> / <code>dfea</code>)</td>
+<td><code>FESTATUS</code></td>
+<td>0–17, ALL</td>
+<td>ON/OFF</td>
+</tr>
+<tr>
+<td><code>HKDIG_START_DAQ_N</code> / <code>HKDIG_STOP_DAQ_N</code> (+ <code>_ALL</code>)</td>
+<td><code>edqn</code> / <code>ddqn</code> (+ <code>edqa</code> / <code>ddqa</code>)</td>
+<td><code>DAQSTATUS</code></td>
+<td>0–17, ALL</td>
+<td>ON/OFF</td>
+</tr>
+<tr>
+<td><code>HKDIG_TDC_RST</code></td>
+<td><code>tdcr</code></td>
+<td><code>TDCRST</code></td>
+<td>–</td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_PED_PERIOD</code></td>
+<td><code>spedp</code></td>
+<td><code>PEDPERIOD</code></td>
+<td>–</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_PED_ENABLE</code></td>
+<td><code>spedn</code></td>
+<td><code>PEDTYPE</code></td>
+<td>0–17</td>
+<td>0–1</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_PED_STAGGER</code></td>
+<td><code>speds</code></td>
+<td><code>PEDSTAG</code></td>
+<td>–</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_RST_AURORA_LINK</code></td>
+<td><code>raur</code></td>
+<td><code>AURORARST</code></td>
+<td>–</td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_CLOCK</code></td>
+<td><code>sclk</code></td>
+<td><code>CLOCK</code></td>
+<td>–</td>
+<td>LOCAL/DPB</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_RMON_PER</code></td>
+<td><code>srmp</code></td>
+<td><code>RMONT</code></td>
+<td>–</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_RUN_RMON</code></td>
+<td><code>runr</code></td>
+<td><code>RMONRUN</code></td>
+<td>–</td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_RUN_RMON_EN</code> / <code>HKDIG_RUN_RMON_DIS</code></td>
+<td><code>rmne</code> / <code>rmnd</code></td>
+<td><code>RMON</code></td>
+<td>–</td>
+<td>ON/OFF</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_5V0A</code></td>
+<td><code>s5v0a</code></td>
+<td><code>5V0A</code></td>
+<td>–</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_5V0A_EEPROM</code></td>
+<td><code>s5v0e</code></td>
+<td><code>5V0E</code></td>
+<td>–</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_DT_NUM</code> / <code>HKDIG_SET_DT_ALL</code></td>
+<td><code>sdtn</code> / <code>sdta</code></td>
+<td><code>DEADTIME</code></td>
+<td>0–17, ALL</td>
+<td>number</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> <code>STATUS</code> (write) is a somewhat misleading name — it actually writes
+the <strong>channel control register</strong> (<code>HKDIG_SET_CHN_CNTRL</code>), not a status
+register. See <code>STATUS</code> (read) below, which does read the actual status
+register.</p>
+</blockquote>
+<p>The following table maps the read commands of the two protocols:</p>
+<table>
+<thead>
+<tr>
+<th>HKDIG Enum</th>
+<th>Mnemonic</th>
+<th>Service Command</th>
+<th>Channels / Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HKDIG_GET_CHN_STATUS</code></td>
+<td><code>gchs</code></td>
+<td><code>STATUS</code></td>
+<td>0–17, AUR0, AUR1</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_CHN_CNTRL</code></td>
+<td><code>gchc</code></td>
+<td><code>CHCONTROL</code></td>
+<td>0–17</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_PED_PERIOD</code></td>
+<td><code>gpedp</code></td>
+<td><code>PEDPERIOD</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_PED_ENABLE</code></td>
+<td><code>gpedn</code></td>
+<td><code>PEDTYPE</code></td>
+<td>0–17</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_OD_SEL_REG</code></td>
+<td><code>godsel</code></td>
+<td><code>ODSEL</code></td>
+<td>0–5</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_CAL_PLS_AMP</code></td>
+<td><code>gcala</code></td>
+<td><code>CALIBAMP</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_CHN_HG_CHG</code></td>
+<td><code>ghgc</code></td>
+<td><code>HG</code></td>
+<td>0–17</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_CHN_LG_CHG</code></td>
+<td><code>glgc</code></td>
+<td><code>LG</code></td>
+<td>0–17</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_HW_VER</code></td>
+<td><code>ghwv</code></td>
+<td><code>HWVER</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_GW_VER</code></td>
+<td><code>ggwv</code></td>
+<td><code>GWVER</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_SW_VER</code></td>
+<td><code>gswv</code></td>
+<td><code>SWVER</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_STATUS</code></td>
+<td><code>gbds</code></td>
+<td><code>BDSTATUS</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_CNTRL</code></td>
+<td><code>gbdc</code></td>
+<td><code>BDCONTROL</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_UPTIME</code></td>
+<td><code>gupt</code></td>
+<td><code>UPTIME</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_CLOCK</code></td>
+<td><code>gclk</code></td>
+<td><code>DAQCLOCK</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_TLNK_LOCK</code></td>
+<td><code>gtlck</code></td>
+<td><code>TLNLOCK</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_EEPROM_OUI</code></td>
+<td><code>goui</code></td>
+<td><code>OUI</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_EEPROM_EID</code></td>
+<td><code>geid</code></td>
+<td><code>EID</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_RMON_ADC_N</code></td>
+<td><code>grma</code></td>
+<td><code>RMONADC</code></td>
+<td>0–17</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_RMON_TDC_N</code></td>
+<td><code>grmt</code></td>
+<td><code>RMONTDC</code></td>
+<td>0–17</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_RMON_FMT_N</code></td>
+<td><code>grmf</code></td>
+<td><code>RMONFMT</code></td>
+<td>0–17</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_RMON_MUX_N</code></td>
+<td><code>grmm</code></td>
+<td><code>RMONMUX</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_RMON_RST_N</code></td>
+<td><code>grmr</code></td>
+<td><code>RMONRST</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_RMON_PER</code></td>
+<td><code>grmp</code></td>
+<td><code>RMONT</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_3V3A</code></td>
+<td><code>g3v3a</code></td>
+<td><code>3V3A</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_12VA</code></td>
+<td><code>g12va</code></td>
+<td><code>12VA</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_I12V</code></td>
+<td><code>gi12v</code></td>
+<td><code>I12V</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_5V0A</code></td>
+<td><code>g5v0a</code></td>
+<td><code>5V0A</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_5V0F</code></td>
+<td><code>g5v0f</code></td>
+<td><code>5V0F</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_5V0A_EEPROM</code></td>
+<td><code>g5v0e</code></td>
+<td><code>5V0E</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_C12V</code></td>
+<td><code>gc12v</code></td>
+<td><code>C12V</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_I5VA</code></td>
+<td><code>gi5va</code></td>
+<td><code>I5VA</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_I3V3A</code></td>
+<td><code>gi3v3a</code></td>
+<td><code>I3V3A</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_I12VA</code></td>
+<td><code>gi12va</code></td>
+<td><code>I12VA</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_TB_REG</code></td>
+<td><code>gtbr</code></td>
+<td><code>TBREG</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_TFE</code></td>
+<td><code>gtfe</code></td>
+<td><code>TFE</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_TFPGA</code></td>
+<td><code>gtfpga</code></td>
+<td><code>TFPGA</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_TPWR</code></td>
+<td><code>gtpwr</code></td>
+<td><code>TPWR</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_TFER</code></td>
+<td><code>gtfer</code></td>
+<td><code>TFER</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_TFPGAR</code></td>
+<td><code>gtfpgar</code></td>
+<td><code>TFPGAR</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_TPWRR</code></td>
+<td><code>gtpwrr</code></td>
+<td><code>TPWRR</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BME_DATA</code></td>
+<td><code>gbme</code></td>
+<td><code>TEMP</code>, <code>RELHUM</code>, <code>PRESS</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_THR_NUM</code></td>
+<td><code>gthn</code></td>
+<td><code>DISCTRES</code></td>
+<td>0–17</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_IT_NUM</code></td>
+<td><code>gitn</code></td>
+<td><code>INTTIME</code></td>
+<td>0–17</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_DT_NUM</code></td>
+<td><code>gdtn</code></td>
+<td><code>DEADTIME</code></td>
+<td>0–17</td>
+</tr>
+<tr>
+<td><code>HKDIG_RO_FMON_N</code></td>
+<td><code>grof</code></td>
+<td><code>FMON</code></td>
+<td>0–17</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_TCH0</code></td>
+<td><code>gtch0</code></td>
+<td><code>TCH0</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_TCH11</code></td>
+<td><code>gtch11</code></td>
+<td><code>TCH11</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_TCH0R</code></td>
+<td><code>gtch0r</code></td>
+<td><code>TCH0R</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_TCH11R</code></td>
+<td><code>gtch11r</code></td>
+<td><code>TCH11R</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_5VOD</code></td>
+<td><code>g5vod</code></td>
+<td><code>5VOD</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_I5VOD</code></td>
+<td><code>gi5vod</code></td>
+<td><code>I5VOD</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_TB_ST</code></td>
+<td><code>gtbs</code></td>
+<td><code>TBST</code></td>
+<td>–</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> <code>TEMP</code>, <code>RELHUM</code>, and <code>PRESS</code> are all served from a single BME280
+read (<code>HKDIG_GET_BME_DATA</code> / <code>gbme</code>), which returns temperature, relative
+humidity, and pressure together. The service reads the calibration parameters
+decoding the returned values in the proper way.</p>
+</blockquote>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../dig-protocols/" class="btn btn-neutral float-left" title="COPacket"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../about/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../dig-protocols/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../about/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

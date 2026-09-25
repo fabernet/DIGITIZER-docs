@@ -53,11 +53,11 @@
               </ul>
               <p class="caption"><span class="caption-text">COMM&Sensors</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../leds/">LEDs</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../control/leds/">LEDs</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../sensors/">Sensors</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../control/sensors/">Sensors</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../onboard-peripherals/">Peripherals</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../control/onboard-peripherals/">Peripherals</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Setup</span></p>
@@ -70,7 +70,11 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">HW setup</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#slow-control-command">Slow control command</a>
+    <li class="toctree-l2"><a class="reference internal" href="#slow-control-command-to-set-5v0a">Slow control command to set 5V0A</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#slow-control-command-to-set-5v0a-dac-eeprom-value">Slow control command to set 5V0A-DAC EEPROM value</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#slow-control-command-to-read-5v0a-dac-eeprom-value">Slow control command to read 5V0A-DAC EEPROM value</a>
     </li>
     </ul>
                   </li>
@@ -86,7 +90,15 @@
               </ul>
               <p class="caption"><span class="caption-text">________</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../appendix/">Appendix</a>
+                  <li class="toctree-l1"><a class="reference internal" >Appendix</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../appendix/appendix/">Appendix Intro</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../appendix/dig-protocols/">COPacket</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../appendix/dpb-slowcontrolapp/">dpb-slowcontrolapp</a>
+                </li>
+    </ul>
                   </li>
               </ul>
               <ul>
@@ -120,14 +132,31 @@
                 <h1 id="hw-setup">HW setup<a class="headerlink" href="#hw-setup" title="Permanent link">#</a></h1>
 <p>Starting from DIGv5, the Analog 5 volts power rail is set by a DAC, the <strong>MCP4725A0T-E/CH</strong>. This DAC has a <em>EEPROM</em> which contains the value loaded at power up. This default value will be programmed during the production to the desired value.</p>
 <p>Since DIGv5, the 5V power rail provided to the OD has a separate source.</p>
-<h3 id="slow-control-command">Slow control command<a class="headerlink" href="#slow-control-command" title="Permanent link">#</a></h3>
+<h2 id="slow-control-command-to-set-5v0a">Slow control command to set 5V0A<a class="headerlink" href="#slow-control-command-to-set-5v0a" title="Permanent link">#</a></h2>
 <p>The slow control command which sets the <em>5VA</em> is the following:</p>
-<pre><code>SET DIGx SET5VA val
+<pre><code>SET DIGx 5V0A val
 </code></pre>
 <p>where:</p>
 <ul>
 <li><code>x</code> is the digitizer number (0/1)</li>
 <li><code>val</code> is the 5VA DAC value ranging from 0 to 4095.</li>
+</ul>
+<h2 id="slow-control-command-to-set-5v0a-dac-eeprom-value">Slow control command to set 5V0A-DAC EEPROM value<a class="headerlink" href="#slow-control-command-to-set-5v0a-dac-eeprom-value" title="Permanent link">#</a></h2>
+<p>The slow control command which sets the EEPROM value is the following:</p>
+<pre><code>SET DIGx 5V0E val
+</code></pre>
+<p>where:</p>
+<ul>
+<li><code>x</code> is the digitizer number (0/1)</li>
+<li><code>val</code> is the DAC value ranging from 0 to 4095.</li>
+</ul>
+<h2 id="slow-control-command-to-read-5v0a-dac-eeprom-value">Slow control command to read 5V0A-DAC EEPROM value<a class="headerlink" href="#slow-control-command-to-read-5v0a-dac-eeprom-value" title="Permanent link">#</a></h2>
+<p>The slow control command which sets the EEPROM value is the following:</p>
+<pre><code>READ DIGx 5V0E
+</code></pre>
+<p>where:</p>
+<ul>
+<li><code>x</code> is the digitizer number (0/1)</li>
 </ul>
               
             </div>

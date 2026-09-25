@@ -50,6 +50,10 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#gw-code">GW Code</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gw-code-meaning-from-version-0x6498-sep-2026">GW Code meaning from version 0x6498 (Sep 2026)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gw-code-meaning-until-version-0x4696-sep-2026">GW Code meaning until version 0x4696 (Sep 2026)</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#serial-protocol">Serial protocol</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#dpb-hw-version">DPB HW version</a>
@@ -65,11 +69,11 @@
               </ul>
               <p class="caption"><span class="caption-text">COMM&Sensors</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../leds/">LEDs</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../control/leds/">LEDs</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../sensors/">Sensors</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../control/sensors/">Sensors</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../onboard-peripherals/">Peripherals</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../control/onboard-peripherals/">Peripherals</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Setup</span></p>
@@ -94,7 +98,15 @@
               </ul>
               <p class="caption"><span class="caption-text">________</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../appendix/">Appendix</a>
+                  <li class="toctree-l1"><a class="reference internal" >Appendix</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../appendix/appendix/">Appendix Intro</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../appendix/dig-protocols/">COPacket</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../appendix/dpb-slowcontrolapp/">dpb-slowcontrolapp</a>
+                </li>
+    </ul>
                   </li>
               </ul>
               <ul>
@@ -130,9 +142,55 @@
 <p>FPGA FW is stored in <strong>mcs</strong> files, whose names carry information about the FW content itself. The name (at least of the latest releases) consists of a <em>GW code</em>, a suffix which identify the serial protocol, and a suffix which identifies the DPB HW version compatibility. Currently, the FW files are stored in a dedicated shared folder on <a href="https://cernbox.cern.ch/files/spaces/eos/user/f/fameli/DIGITIZER-FW?items-per-page=100&amp;files-spaces-generic-view-mode=resource-table&amp;tiles-size=2"><em>CERNbox</em></a>.</p>
 <p>The <strong>mcs</strong> file is intended to be uploaded into the non-volatile memory of the board, allowing a permanent programming of the FPGA at power up.</p>
 <h3 id="gw-code">GW Code<a class="headerlink" href="#gw-code" title="Permanent link">#</a></h3>
-<p>The so-called GW code of the Digitizer consists of a 16-bit hex word, which specifies HW and FW version of the file.</p>
-<p>Description : Package for HYPER-K GateWare (GW) versions
-Since GW version 7F, this is how the reg is managed:</p>
+<p>The so-called <em>GW code</em> of the Digitizer consists of a 16-bit hex word, which specifies both the HW and GW versions of the bitstream or EEPROM <em>mcs</em> file.</p>
+<h3 id="gw-code-meaning-from-version-0x6498-sep-2026">GW Code meaning from version 0x6498 (Sep 2026)<a class="headerlink" href="#gw-code-meaning-from-version-0x6498-sep-2026" title="Permanent link">#</a></h3>
+<p>The meaning of the GW code is quite straightforward: the MSB encode the HW version of ID and OD Digitizer, while the LSB encodes the GW version. Since GW version 0x98, this is the meaning of the code:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">4 bit</th>
+<th style="text-align: center;">4 bit</th>
+<th style="text-align: center;">8 bit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">ID-HW</td>
+<td style="text-align: center;">OD-HW</td>
+<td style="text-align: center;">GW VERSION</td>
+</tr>
+</tbody>
+</table>
+<p><em>ID-HW</em> and <em>OD-HW</em> codes represent the HW version of, resepctively, ID Digitizer board and OD Digitizer board.</p>
+<p>The <em>GW VERSION</em> encodes the version of the FW, identifying also sub-ranges according to the following table:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Code Min</th>
+<th style="text-align: center;">Code Max</th>
+<th style="text-align: center;">FW type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0xF0</td>
+<td style="text-align: center;">0xFF</td>
+<td style="text-align: center;">Production Testbench</td>
+</tr>
+<tr>
+<td style="text-align: center;">0xB0</td>
+<td style="text-align: center;">0xEF</td>
+<td style="text-align: center;">Subhit</td>
+</tr>
+<tr>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;">0xAF</td>
+<td style="text-align: center;">Non-subhit</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gw-code-meaning-until-version-0x4696-sep-2026">GW Code meaning until version 0x4696 (Sep 2026)<a class="headerlink" href="#gw-code-meaning-until-version-0x4696-sep-2026" title="Permanent link">#</a></h3>
+<p>This coding was used until version <em>0x4696</em>: the main difference is the <em>FMT</em> bit, which was used to distinguish between subhit and non-subhit FW versions. Now, this task is attributed to the range of the GW version code. Since GW version 7F, this is how the reg is managed:</p>
 <table>
 <thead>
 <tr>
@@ -153,11 +211,10 @@ Since GW version 7F, this is how the reg is managed:</p>
 </table>
 <p><em>ID-HW</em> and <em>OD-HW</em> codes represent the HW version of the resepctive HW boards.</p>
 <p><em>FMT</em> specifies the data format: it is <code>1</code> for the <em>subhit</em> FW, while it is <code>0</code> for older FW which does not implement the subhit acquisition.</p>
-<p>Finally, the <em>GW VERSION</em> states the version of the FW.</p>
 <h3 id="serial-protocol">Serial protocol<a class="headerlink" href="#serial-protocol" title="Permanent link">#</a></h3>
-<p>The suffix which indicates the Serial protocol between DPB and DIG can be <strong>GUI</strong> or <strong>PKT</strong>, according to GUI-like interface (interactive menus, string commands, etc.etc.), or PKT-like interface (ASCII protocol with packets, string commands, etc.).</p>
+<p>The suffix which indicates the Serial protocol between DPB and DIG can be <strong>GUI</strong> or <strong>PKT</strong>, according to GUI-like interface (interactive menus, string commands, etc.etc.), or PKT-like interface (ASCII protocol with packets, string commands, etc.). Both protocols can be used with a direct serial connection. The <em>dpb-slowcontrolapp</em> service, running on the DPB, relies on the <strong>PKT</strong> protocol. </p>
 <h3 id="dpb-hw-version">DPB HW version<a class="headerlink" href="#dpb-hw-version" title="Permanent link">#</a></h3>
-<p>DPBv3 is the only HW version which needs to be distinguished from the others, since there is an inversion of the aurora link on DIG1 link. The suffix specifies <strong>DPBv3</strong> when the FW is intended for HW version 3. If no suffix is present or if a specific HW version is in the file name, then this is the version for DPB versions other than v3.</p>
+<p>DPBv3 is the only HW version which needs to be distinguished from the others, since there is an inversion of the aurora link on DIG1 link. The suffix specifies <strong>DPBv3</strong> when the FW is intended for HW version 3. If no suffix is present or if a specific DPB HW version is in the file name, then this is the version for DPB versions other than v3.</p>
               
             </div>
           </div><footer>
