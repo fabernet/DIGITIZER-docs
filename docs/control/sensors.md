@@ -74,5 +74,5 @@ where:
 
 - `x` is the digitizer number (0/1)
 
-[sensors]: ./img/sensors.png "Voltage and current sensors"
-[I_sense]: ./img/I_sense.png "Current sensors"
+[sensors]: ../img/sensors.png "Voltage and current sensors"
+[I_sense]: ../img/I_sense.png "Current sensors"

@@ -17,10 +17,10 @@ nav:
    - Data Format: daq/data-format.md
    - Settings: daq/board-control.md
    - Timing: daq/timing.md
- - ________:
-   - Appendix: appenidx/appendix.md
-    - COPackkt: appendix/dig-protocols.md
-    - dpb-slowcontrolapp: appendix/dpb-slowcontrolapp.md
+ - Appendix:
+   - DIG-DPB serial bridge: appendix/dig-dpb-bridge.md
+   - DIG protocols: appendix/dig-protocols.md
+   - DPB slow control service: appendix/dpb-slowcontrol-service.md
  - About: about.md
 
 markdown_extensions:

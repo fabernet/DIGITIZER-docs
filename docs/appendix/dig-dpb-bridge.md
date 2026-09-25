@@ -1,8 +1,4 @@
-# Appendix
-
-This section is dedicated to detailed explanation of technical arguments.
-
-## Connecting to the Digitizer through the DPB serial port
+# Connecting to the Digitizer through the DPB serial port
 
 The Digitizer communicates through a serial port: when it is connected to the DPB, the communication can be routed by the DPB.
 
