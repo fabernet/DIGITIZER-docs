@@ -12,3 +12,5 @@ As any other service in the Petalinux distribution for the DPB, the application 
 - $ systemctl restart dpb-slowcontrolapp
 
 Details of this implementation can be found in the [Petalinux repo documentation page](https://gitlab.cern.ch/hk-dpb-team/hk_petalinux_project_dpb2_2022_2/-/blob/master/doc/dpb-slowcontrolapp-howto.md?ref_type=heads).
+
+In the Appendix section, the Digitizer serial protocol and the DPB GbE protocol are described in detail. A table remaps commands from a protocol to the other, when possible.

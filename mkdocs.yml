@@ -5,9 +5,9 @@ nav:
  - Introduction: intro.md
  - Slow Control: slow-control.md
  - COMM&Sensors:
-   - LEDs: leds.md
-   - Sensors: sensors.md
-   - Peripherals: onboard-peripherals.md
+   - LEDs: control/leds.md
+   - Sensors: control/sensors.md
+   - Peripherals: control/onboard-peripherals.md
  - Setup:
    - DAQ Parameters: setup/parameters.md
    - Pedestal: setup/pedestal.md
@@ -18,7 +18,9 @@ nav:
    - Settings: daq/board-control.md
    - Timing: daq/timing.md
  - ________:
-   - Appendix: appendix.md
+   - Appendix: appenidx/appendix.md
+    - COPackkt: appendix/dig-protocols.md
+    - dpb-slowcontrolapp: appendix/dpb-slowcontrolapp.md
  - About: about.md
 
 markdown_extensions:
