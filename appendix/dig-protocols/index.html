@@ -88,7 +88,7 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#digitizer-gui-serial-protocol">Digitizer GUI Serial protocol</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#digitizer-copkt-serial-protocol">Digitizer COPkt Serial protocol</a>
+    <li class="toctree-l2"><a class="reference internal" href="#digitizer-copacket-serial-protocol">Digitizer COPacket Serial protocol</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#1-front-end-fe-parameter-commands">1. Front-End (FE) / Parameter Commands</a>
     </li>
@@ -154,12 +154,14 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="digitizer-slow-control-protocols">Digitizer Slow control protocols<a class="headerlink" href="#digitizer-slow-control-protocols" title="Permanent link">#</a></h1>
-<p>The slow control channel to communicate with the digitizer board is the serial port connecting it to the DPB. Natively, there are 2 possible communication protocols over this serial link: the so-called <code>GUI</code> and the <code>COPacket</code>.</p>
-<p>The <code>GUI</code> protocol was developed as a mean to communicate "visually" with the digitizer board. There is a menu implemented and commands can be issued sending ASCII codes through a terminal or an application. This protocol is not suitable to be implemented in a "machine readable" way, since there is no control over the character stream sent or returned by the digitizer. This is meant essentially for "human" interaction through a terminal, though a lot of effort has been done to use it also in Python scripts.</p>
-<p>The <code>COPacket</code>, on the contrary, though it is a very simple protocol, is thought to be "machine" friendly. It is an ASCII packet based protocol, with leading and trailing characters, commands and parameters well defined and of known length.</p>
+<p>The slow control channel to communicate with the digitizer board is the serial connected to the DPB. Natively, there are 2 possible communication protocols over this serial link: the so-called <code>GUI</code> and the <code>COPacket</code>.</p>
+<p>The <code>GUI</code> protocol was developed as a mean to communicate "interactively" with the digitizer board. There is a menu implemented and commands can be issued sending ASCII codes through a terminal or an application. This protocol is not suitable to be implemented in a "machine readable" way, since there is no control over the character stream sent or returned by the digitizer. This is meant essentially for "human" interaction through a terminal, though a lot of effort has been done to use it also in Python scripts. The main drawback is the lack of a packet format which helps designing an efficient code to exchange data.</p>
+<p>The <code>COPacket</code>, on the contrary, though it is a very simple protocol, is thought to be "machine" friendly. It is an ASCII packet based protocol, with leading and trailing characters delimiting a variable sized packet, well defined commands and parameters. This will be the target protocol.</p>
+<p>Even though both are mantained (in some cases, for debug purposes, some commands could have been implemented only in one protocol), it is recommended to use the COPacket protocol.</p>
 <h2 id="digitizer-gui-serial-protocol">Digitizer GUI Serial protocol<a class="headerlink" href="#digitizer-gui-serial-protocol" title="Permanent link">#</a></h2>
 <p>The GUI protocol is intended for <em>human interaction friendly</em>, i.e. is designed to be used from a serial terminal in an interactive way. This makes it very confortable for debug and tests, but almost impossible to exchange commands efficiently with an application or a script.</p>
-<h2 id="digitizer-copkt-serial-protocol">Digitizer COPkt Serial protocol<a class="headerlink" href="#digitizer-copkt-serial-protocol" title="Permanent link">#</a></h2>
+<p>For example, pressing character <code>m</code> will show the menu-like prompt, which is slightly self-explaining.</p>
+<h2 id="digitizer-copacket-serial-protocol">Digitizer COPacket Serial protocol<a class="headerlink" href="#digitizer-copacket-serial-protocol" title="Permanent link">#</a></h2>
 <p>The protocol is based on packets of ASCII characters; each packet starts with the <code>$</code> leading character and is terminated by the <code>#</code> trailing character. The command follows immediately after the <code>$</code> character: it is a string which may or may not require one or more parameters. For example, a list of available commands is returned typing the <code>$help#</code> command.</p>
 <p>Available commands are shown hereafter, taken from the <em>COPacketCmdHkDig.cpp</em> file which implements the whole command set.</p>
 <p>This document describes the commands exposed by the <code>HkDigCommands</code> command table (<code>HkDigCmdSize = 102</code> entries, backed by the <code>HKDIG_CMD_LIST</code> enum). Each command consists of:</p>

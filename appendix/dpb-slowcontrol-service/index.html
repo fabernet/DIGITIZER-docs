@@ -134,7 +134,7 @@
 <th>HKDIG Enum</th>
 <th>Mnemonic</th>
 <th>Service Command</th>
-<th>Channels / Range</th>
+<th>Parameter</th>
 <th>Value</th>
 </tr>
 </thead>
@@ -182,7 +182,7 @@
 <td>ON/OFF</td>
 </tr>
 <tr>
-<td>---</td>
+<td>CALIBRATOR SECTION</td>
 <td>---</td>
 <td>---</td>
 <td>---</td>
@@ -259,7 +259,7 @@
 <td>number</td>
 </tr>
 <tr>
-<td>---</td>
+<td>PEDESTAL SECTION</td>
 <td>---</td>
 <td>---</td>
 <td>---</td>
@@ -287,7 +287,7 @@
 <td>number</td>
 </tr>
 <tr>
-<td>---</td>
+<td>RATE MONITOR SECTION</td>
 <td>---</td>
 <td>---</td>
 <td>---</td>
@@ -315,7 +315,49 @@
 <td>ON/OFF</td>
 </tr>
 <tr>
+<td>OD SECTION</td>
 <td>---</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_OD_SEL_REG</code></td>
+<td><code>sodsel</code></td>
+<td><code>ODSEL</code></td>
+<td>0–5</td>
+<td>0–1</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_ADS_PSC</code></td>
+<td><code>spsc</code></td>
+<td><code>PSC</code></td>
+<td>12–17</td>
+<td>number</td>
+</tr>
+<tr>
+<td>PERIPHERAL SECTION</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_5V0A</code></td>
+<td><code>s5v0a</code></td>
+<td><code>5V0A</code></td>
+<td>–</td>
+<td>number</td>
+</tr>
+<tr>
+<td><code>HKDIG_SET_5V0A_EEPROM</code></td>
+<td><code>s5v0e</code></td>
+<td><code>5V0E</code></td>
+<td>–</td>
+<td>number</td>
+</tr>
+<tr>
+<td>GENERIC SECTION</td>
 <td>---</td>
 <td>---</td>
 <td>---</td>
@@ -333,20 +375,6 @@
 <td><code>stbr</code></td>
 <td><code>TBREG</code></td>
 <td>–</td>
-<td>number</td>
-</tr>
-<tr>
-<td><code>HKDIG_SET_OD_SEL_REG</code></td>
-<td><code>sodsel</code></td>
-<td><code>ODSEL</code></td>
-<td>0–5</td>
-<td>0–1</td>
-</tr>
-<tr>
-<td><code>HKDIG_SET_ADS_PSC</code></td>
-<td><code>spsc</code></td>
-<td><code>PSC</code></td>
-<td>12–17</td>
 <td>number</td>
 </tr>
 <tr>
@@ -370,20 +398,6 @@
 <td>–</td>
 <td>LOCAL/DPB</td>
 </tr>
-<tr>
-<td><code>HKDIG_SET_5V0A</code></td>
-<td><code>s5v0a</code></td>
-<td><code>5V0A</code></td>
-<td>–</td>
-<td>number</td>
-</tr>
-<tr>
-<td><code>HKDIG_SET_5V0A_EEPROM</code></td>
-<td><code>s5v0e</code></td>
-<td><code>5V0E</code></td>
-<td>–</td>
-<td>number</td>
-</tr>
 </tbody>
 </table>
 <blockquote>
@@ -400,7 +414,7 @@ register.</p>
 <th>HKDIG Enum</th>
 <th>Mnemonic</th>
 <th>Service Command</th>
-<th>Channels / Range</th>
+<th>Parameter</th>
 </tr>
 </thead>
 <tbody>
@@ -453,22 +467,10 @@ register.</p>
 <td>0–17</td>
 </tr>
 <tr>
-<td><code>HKDIG_GET_PED_PERIOD</code></td>
-<td><code>gpedp</code></td>
-<td><code>PEDPERIOD</code></td>
-<td>–</td>
-</tr>
-<tr>
-<td><code>HKDIG_GET_PED_ENABLE</code></td>
-<td><code>gpedn</code></td>
-<td><code>PEDTYPE</code></td>
-<td>0–17</td>
-</tr>
-<tr>
-<td><code>HKDIG_GET_OD_SEL_REG</code></td>
-<td><code>godsel</code></td>
-<td><code>ODSEL</code></td>
-<td>0–5</td>
+<td>CALIBRATOR SECTION</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
 </tr>
 <tr>
 <td><code>HKDIG_GET_CAL_PLS_AMP</code></td>
@@ -489,31 +491,25 @@ register.</p>
 <td>0–17</td>
 </tr>
 <tr>
-<td><code>HKDIG_GET_BOARD_STATUS</code></td>
-<td><code>gbds</code></td>
-<td><code>BDSTATUS</code></td>
-<td>–</td>
-</tr>
-<tr>
-<td><code>HKDIG_GET_BOARD_CNTRL</code></td>
-<td><code>gbdc</code></td>
-<td><code>BDCONTROL</code></td>
-<td>–</td>
-</tr>
-<tr>
-<td><code>HKDIG_GET_EEPROM_OUI</code></td>
-<td><code>goui</code></td>
-<td><code>OUI</code></td>
-<td>–</td>
-</tr>
-<tr>
-<td><code>HKDIG_GET_EEPROM_EID</code></td>
-<td><code>geid</code></td>
-<td><code>EID</code></td>
-<td>–</td>
-</tr>
-<tr>
+<td>PEDESTAL SECTION</td>
 <td>---</td>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_PED_PERIOD</code></td>
+<td><code>gpedp</code></td>
+<td><code>PEDPERIOD</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_PED_ENABLE</code></td>
+<td><code>gpedn</code></td>
+<td><code>PEDTYPE</code></td>
+<td>0–17</td>
+</tr>
+<tr>
+<td>RATE MONITOR SECTION</td>
 <td>---</td>
 <td>---</td>
 <td>---</td>
@@ -555,7 +551,37 @@ register.</p>
 <td>–</td>
 </tr>
 <tr>
+<td>OD SECTION</td>
 <td>---</td>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_OD_SEL_REG</code></td>
+<td><code>godsel</code></td>
+<td><code>ODSEL</code></td>
+<td>0–5</td>
+</tr>
+<tr>
+<td>BOARD SECTION</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_STATUS</code></td>
+<td><code>gbds</code></td>
+<td><code>BDSTATUS</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_BOARD_CNTRL</code></td>
+<td><code>gbdc</code></td>
+<td><code>BDCONTROL</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td>VOLTAGE &amp; CURRENT SECTION</td>
 <td>---</td>
 <td>---</td>
 <td>---</td>
@@ -591,12 +617,6 @@ register.</p>
 <td>–</td>
 </tr>
 <tr>
-<td><code>HKDIG_GET_5V0A_EEPROM</code></td>
-<td><code>g5v0e</code></td>
-<td><code>5V0E</code></td>
-<td>–</td>
-</tr>
-<tr>
 <td><code>HKDIG_GET_BOARD_C12V</code></td>
 <td><code>gc12v</code></td>
 <td><code>C12V</code></td>
@@ -619,6 +639,18 @@ register.</p>
 <td><code>gi12va</code></td>
 <td><code>I12VA</code></td>
 <td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_5V0A_EEPROM</code></td>
+<td><code>g5v0e</code></td>
+<td><code>5V0E</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td>TEMPERATURE SECTION</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
 </tr>
 <tr>
 <td><code>HKDIG_GET_BOARD_TFE</code></td>
@@ -657,18 +689,6 @@ register.</p>
 <td>–</td>
 </tr>
 <tr>
-<td><code>HKDIG_GET_BME_DATA</code></td>
-<td><code>gbme</code></td>
-<td><code>TEMP</code>, <code>RELHUM</code>, <code>PRESS</code></td>
-<td>–</td>
-</tr>
-<tr>
-<td><code>HKDIG_RO_FMON_N</code></td>
-<td><code>grof</code></td>
-<td><code>FMON</code></td>
-<td>0–17</td>
-</tr>
-<tr>
 <td><code>HKDIG_GET_BOARD_TCH0</code></td>
 <td><code>gtch0</code></td>
 <td><code>TCH0</code></td>
@@ -705,6 +725,36 @@ register.</p>
 <td>–</td>
 </tr>
 <tr>
+<td><code>HKDIG_GET_BME_DATA</code></td>
+<td><code>gbme</code></td>
+<td><code>TEMP</code>, <code>RELHUM</code>, <code>PRESS</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td>GENERIC SECTION</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_EEPROM_OUI</code></td>
+<td><code>goui</code></td>
+<td><code>OUI</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_GET_EEPROM_EID</code></td>
+<td><code>geid</code></td>
+<td><code>EID</code></td>
+<td>–</td>
+</tr>
+<tr>
+<td><code>HKDIG_RO_FMON_N</code></td>
+<td><code>grof</code></td>
+<td><code>FMON</code></td>
+<td>0–17</td>
+</tr>
+<tr>
 <td><code>HKDIG_GET_UPTIME</code></td>
 <td><code>gupt</code></td>
 <td><code>UPTIME</code></td>
@@ -721,6 +771,12 @@ register.</p>
 <td><code>gtlck</code></td>
 <td><code>TLNLOCK</code></td>
 <td>–</td>
+</tr>
+<tr>
+<td>PRODICTION TESTBENCH SECTION</td>
+<td>---</td>
+<td>---</td>
+<td>---</td>
 </tr>
 <tr>
 <td><code>HKDIG_GET_TB_REG</code></td>
