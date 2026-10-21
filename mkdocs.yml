@@ -2,7 +2,6 @@ site_name: Dig-Docs
 
 nav:
  - Home: index.md
- - Introduction: intro.md
  - Slow Control: slow-control.md
  - COMM&Sensors:
    - LEDs: control/leds.md
@@ -18,6 +17,7 @@ nav:
    - Settings: daq/board-control.md
    - Timing: daq/timing.md
  - Appendix:
+   - Building the docs: appendix/building-the-docs.md
    - DIG-DPB serial bridge: appendix/dig-dpb-bridge.md
    - DIG protocols: appendix/dig-protocols.md
    - DPB slow control service: appendix/dpb-slowcontrol-service.md
