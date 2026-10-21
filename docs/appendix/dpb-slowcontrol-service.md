@@ -11,7 +11,7 @@ The following table maps the write commands of the two protocols:
 | HKDIG Enum | Mnemonic | Service Command | Parameter | Value |
 |---|---|---|---|---|
 |CHANNEL SECTION|||||
-| `HKDIG_SET_CHN_CNTRL` | `schc` | `STATUS` | 0–17 | number |
+| `HKDIG_SET_CHN_CNTRL` | `schc` | `CHCONTROL` | 0–17 | number |
 | `HKDIG_SET_THR_NUM` / `HKDIG_SET_THR_ALL` | `sthn` / `stha` | `DISCTRES` | 0–17, ALL | number |
 | `HKDIG_SET_IT_NUM` / `HKDIG_SET_IT_ALL` | `sitn` / `sita` | `INTTIME` | 0–17, ALL | number |
 | `HKDIG_SET_DT_NUM` / `HKDIG_SET_DT_ALL` | `sdtn` / `sdta` | `DEADTIME` | 0–17, ALL | number |
@@ -70,10 +70,12 @@ The following table maps the read commands of the two protocols:
 | `HKDIG_GET_THR_NUM` | `gthn` | `DISCTRES` | 0–17 |
 | `HKDIG_GET_IT_NUM` | `gitn` | `INTTIME` | 0–17 |
 | `HKDIG_GET_DT_NUM` | `gdtn` | `DEADTIME` | 0–17 |
+| `HKDIG_GET_CHN_HG_CHG` | `ghgc` | `HG` | 0–17 |
+| `HKDIG_GET_CHN_HG_SUM` | `ghgs` | `HG` | 0–17 |
+| `HKDIG_GET_CHN_LG_CHG` | `glgc` | `LG` | 0–17 |
+| `HKDIG_GET_CHN_LG_SUM` | `glgs` | `LG` | 0–17 |
 |CALIBRATOR SECTION||||
 | `HKDIG_GET_CAL_PLS_AMP` | `gcala` | `CALIBAMP` | – |
-| `HKDIG_GET_CHN_HG_CHG` | `ghgc` | `HG` | 0–17 |
-| `HKDIG_GET_CHN_LG_CHG` | `glgc` | `LG` | 0–17 |
 |PEDESTAL SECTION||||
 | `HKDIG_GET_PED_PERIOD` | `gpedp` | `PEDPERIOD` | – |
 | `HKDIG_GET_PED_ENABLE` | `gpedn` | `PEDTYPE` | 0–17 |

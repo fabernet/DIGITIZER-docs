@@ -12,4 +12,6 @@ This is the very first data format defined to transfer as much information as po
 
 The `subhit` data format is the "engineered" protocol which exploits the capability of the Digitizer board to provide information during the dead time of charge measurement done by the ADCs of the High and Low range.
 
-Detailed info on the __subhit__ data format can be found in a dedicated page [here](https://wiki.hyperk.org/do/view/HyperK/Digitizer)
+Detailed info on the __subhit__ data format can be found in a dedicated page on [HK Twiki](https://wiki.hyperk.org/do/view/HyperK/Digitizer) or in this [pdf document](assets/DataFormat-20251013.pdf).
+
+<iframe src="assets/DataFormat-20251013.pdf" width="100%" height="600px"></iframe>

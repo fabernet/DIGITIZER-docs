@@ -66,8 +66,9 @@ Configure the calibration board (CAL-Board) and its pulse generator.
 | Command | Enum | Arguments | Description |
 |---|---|---|---|
 | `glgc` | `HKDIG_GET_CHN_LG_CHG` | `ch` | Get channel low-gain (LG) charge |
+| `glgs` | `HKDIG_GET_CHN_LG_SUM` | `ch, i` | Get channel `ch` sum of `i` LG charge samples |
 | `ghgc` | `HKDIG_GET_CHN_HG_CHG` | `ch` | Get channel high-gain (HG) charge |
-| `gmnc` | `HKDIG_GET_CHN_MEAN_CHG` | `ch, i` | Get mean charge for a channel over `i` samples |
+| `ghgs` | `HKDIG_GET_CHN_HG_SUM` | `ch, i` | Get channel `ch` sum of `i` HG charge samples |
 | `gchs` | `HKDIG_GET_CHN_STATUS` | `ch` | Get channel status register |
 | `gchc` | `HKDIG_GET_CHN_CNTRL` | `ch` | Get channel control register |
 | `schc` | `HKDIG_SET_CHN_CNTRL` | `ch, ctl` | Set channel control register |
