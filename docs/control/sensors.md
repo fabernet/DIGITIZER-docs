@@ -38,7 +38,9 @@ where:
 
 There are many temperature sensors on board to check the working point of the front-end and the temperature fo the FPGA and power section.
 
-The following commands return the temperature of various areas of the board 
+The sensing is made by an IC from TI, the LMT84, whose data sheet can be found [here](https://www.ti.com/lit/ds/symlink/lmt84.pdf?ts=1792760790971&ref_url=https%253A%252F%252Fwww.google.com%252F). The device claims a typical accuracy of `+-0.4 degree Celsius`.
+
+The following commands return the temperature of various areas of the board:
 
 ```
 READ DIGx TFPGA     # T of FPGA
@@ -49,7 +51,7 @@ READ DIGx TCH11     # T of CH11
 READ DIGx TEMP      # T measured by BME280 sensor
 ```
 
-It is also possible to read back the raw temperature values with the following set of commands:
+It is also possible to read back the raw temperature values to decode the measurement using the complex formulas given in the data sheet, which require some math library more powerful than what is available to the uBlaze microcontroller. For raw temperature values use the following set of commands:
 ```
 READ DIGx TFER
 READ DIGx TFPGAR
@@ -64,7 +66,7 @@ where:
 
 ## BME280 readout
 
-The board is equipped with a BME280, which provides Temperature, Relative Humidity, and Pressure. The device is shown in [paragraph](#on-board-voltages-and-currents-schematics) and is named U27. In [paragraph](#on-board-temperatures-readout) we already showed the command to read the BME280 temperature. Here is the way to read pressure and Relative Humidity.
+The board is equipped with a BME280, which measures Temperature, Relative Humidity, and Pressure. The device is shown in [paragraph](#on-board-voltages-and-currents-schematics) and its reference is U27. In [paragraph](#on-board-temperatures-readout) we already showed the command to read the BME280 temperature. Here is the way to read pressure and Relative Humidity.
 ```
 READ DIGx RELHUM
 READ DIGx PRESS

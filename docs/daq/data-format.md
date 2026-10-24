@@ -6,10 +6,10 @@ The `subhit` data format is the target protocol and will gradually replace the `
 
 ## No-subhit data format
 
-This is the very first data format defined to transfer as much information as possible disregarding the rate optimization. It was defined to debug the FW and allow easily to decode all the received data. Moreover, this format does not impelement the `subhit` detection, as explained in the `DAQ` chapter of this documentation.
+This is the very first data format defined to transfer as much information as possible disregarding the rate optimization. It was defined to debug the FW and to allow to easily decode all the received data with a deterministic protocol. This format does not implement the `subhit` detection, as explained in the `DAQ` chapter of this documentation, even though the data rate measured by rate monitor processes are also taking into account the subhit contribution.
 
 ## Subhit data format
 
-The `subhit` data format is the "engineered" protocol which exploits the capability of the Digitizer board to provide information during the dead time of charge measurement done by the ADCs of the High and Low range.
+The `subhit` data format is the "engineered" protocol which exploits the capability of the Digitizer board to provide information during the dead time of charge analog integration and digitization implemented by the ADCs of the High and Low range.
 
-Detailed info on the __subhit__ data format can be found in this [pdf document](../assets/DataFormat-20251013.pdf) or in a dedicated page on the [Hyper-K Twiki](https://wiki.hyperk.org/do/view/HyperK/Digitizer).
+Detailed info on the __subhit__ data format can be found in this [pdf document](../assets/DataFormat-20251013.pdf) or in the dedicated page on the [Hyper-K Twiki](https://wiki.hyperk.org/do/view/HyperK/Digitizer).
