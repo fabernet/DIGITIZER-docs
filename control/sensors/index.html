@@ -153,7 +153,8 @@ READ DIGx I5V0D
 </ul>
 <h2 id="on-board-temperatures-readout">On board temperatures readout<a class="headerlink" href="#on-board-temperatures-readout" title="Permanent link">#</a></h2>
 <p>There are many temperature sensors on board to check the working point of the front-end and the temperature fo the FPGA and power section.</p>
-<p>The following commands return the temperature of various areas of the board </p>
+<p>The sensing is made by an IC from TI, the LMT84, whose data sheet can be found <a href="https://www.ti.com/lit/ds/symlink/lmt84.pdf?ts=1792760790971&amp;ref_url=https%253A%252F%252Fwww.google.com%252F">here</a>. The device claims a typical accuracy of <code>+-0.4 degree Celsius</code>.</p>
+<p>The following commands return the temperature of various areas of the board:</p>
 <pre><code>READ DIGx TFPGA     # T of FPGA
 READ DIGx TPWR      # T of power section
 READ DIGx TCH0      # T of CH0
@@ -161,7 +162,7 @@ READ DIGx TFE       # T of CH5
 READ DIGx TCH11     # T of CH11
 READ DIGx TEMP      # T measured by BME280 sensor
 </code></pre>
-<p>It is also possible to read back the raw temperature values with the following set of commands:</p>
+<p>It is also possible to read back the raw temperature values to decode the measurement using the complex formulas given in the data sheet, which require some math library more powerful than what is available to the uBlaze microcontroller. For raw temperature values use the following set of commands:</p>
 <pre><code>READ DIGx TFER
 READ DIGx TFPGAR
 READ DIGx TPWRR
@@ -173,7 +174,7 @@ READ DIGx TCH11R
 <li><code>x</code> is the digitizer number (0/1)</li>
 </ul>
 <h2 id="bme280-readout">BME280 readout<a class="headerlink" href="#bme280-readout" title="Permanent link">#</a></h2>
-<p>The board is equipped with a BME280, which provides Temperature, Relative Humidity, and Pressure. The device is shown in <a href="#on-board-voltages-and-currents-schematics">paragraph</a> and is named U27. In <a href="#on-board-temperatures-readout">paragraph</a> we already showed the command to read the BME280 temperature. Here is the way to read pressure and Relative Humidity.</p>
+<p>The board is equipped with a BME280, which measures Temperature, Relative Humidity, and Pressure. The device is shown in <a href="#on-board-voltages-and-currents-schematics">paragraph</a> and its reference is U27. In <a href="#on-board-temperatures-readout">paragraph</a> we already showed the command to read the BME280 temperature. Here is the way to read pressure and Relative Humidity.</p>
 <pre><code>READ DIGx RELHUM
 READ DIGx PRESS
 </code></pre>
